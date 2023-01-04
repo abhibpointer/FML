@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { format } from 'date-fns'
+import { useRef } from 'react'
 import './Addbanner.css'
 import {
   CButton,
@@ -18,6 +19,7 @@ import {
 } from '@coreui/react'
 
 function Addbanner() {
+  const ref = useRef(null)
   const [title, setTitle] = useState('')
   const [outletid, setOutletId] = useState('')
   const [active, setActive] = useState('')
@@ -26,9 +28,10 @@ function Addbanner() {
   const [fromdate, setFromDate] = useState('')
   const [file, setFile] = useState(null)
   // const [message, setMessage] = useState('')
+  console.log(fix)
 
   //Drop down state
-  const [ouletInfo, setOutletInfo] =useState('')
+  const [ouletInfo, setOutletInfo] = useState('')
 
   //Error validation
   const [titleErr, setTitleErr] = useState(false)
@@ -62,18 +65,20 @@ function Addbanner() {
 
   const handleActive = (e) => {
     let active = e.target.value
-    if (!Number(active) || active.trim() == null) {
+    let re = /[1]/g
+    if (!re.test(active) || active.trim() == null) {
       setActiveErr('Active is required')
     } else {
       setActiveErr(false), setActiveErr('')
     }
     setActive(active)
   }
+
   const handleFix = (e) => {
     let fix = e.target.value
-    let re = /[0-9]/g
+    let re = /[0-1]/g
     if (!re.test(fix) || fix.trim() == null) {
-      setFixErr('Fix number is required')
+      setFixErr('Fix number must be between 0 to 1')
     } else {
       setFixErr(false), setFixErr('')
     }
@@ -110,35 +115,35 @@ function Addbanner() {
   //   setFile(file)
   // }
 
-  const isValidFileUploaded=(file)=>{
-    const validExtensions = ['png','jpeg','jpg']
+  const isValidFileUploaded = (file) => {
+    const validExtensions = ['png', 'jpeg', 'jpg']
     const fileExtension = file.type.split('/')[1]
     return validExtensions.includes(fileExtension)
   }
-  
-  const handleFile = e => {
-      if(e.target.files.length < 1){
-        return;
-      }
-      const file = e.target.files[0];
-      if(isValidFileUploaded(file)){
-        setFile(file)
-      }else{
-        alert('Please enter valid formate file')
-        window.location.reload()
-      }
+
+  const handleFile = (e) => {
+    if (e.target.files.length < 1) {
+      return
+    }
+    const file = e.target.files[0]
+    if (isValidFileUploaded(file)) {
+      setFile(file)
+    } else {
+      alert('Please enter valid formate file')
+      window.location.reload()
+    }
   }
 
   // drop down
-  useEffect(()=>{
-    const fetchData = async () =>{
-    await axios.get('http://localhost:7777/outletlist').then((res)=>{
-     // console.log(res.data.data)
-      setOutletInfo(res.data.data)  
-    })
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios.get('http://localhost:7777/outletlist').then((res) => {
+        // console.log(res.data.data)
+        setOutletInfo(res.data.data)
+      })
     }
     fetchData()
-  },[])
+  }, [])
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -158,13 +163,14 @@ function Addbanner() {
       .post(uri, formData)
       .then((res) => {
         console.log(res)
-        alert('Successfully banner data added');
-        window.location.reload();
+        alert('Successfully banner data added')
+        window.location.reload()
       })
       .catch(() => {
         setMessageErr('Please enter above information')
       })
   }
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -172,14 +178,14 @@ function Addbanner() {
           <CCol md={9} lg={7} xl={6}>
             <CCard className="mx-4">
               <CCardBody className="p-4">
-                <CForm className='starlabel'>
+                <CForm className="starlabel">
                   <h1 className="text-center bg-light">Add your Banner</h1>
                   {/* <p className="text-medium-emphasis text-center">{message}</p> */}
                   <CInputGroup className="mb-3">
-                    <CInputGroupText className='CInputGroupText'>Banner Title:</CInputGroupText>
+                    <CInputGroupText className="CInputGroupText">Banner Title:</CInputGroupText>
                     <CFormInput
                       placeholder="Enter Title"
-                      name="banner_title" 
+                      name="banner_title"
                       value={title}
                       onChange={handleTitle}
                     />
@@ -189,13 +195,20 @@ function Addbanner() {
                   <CInputGroup className="mb03">
                     <CInputGroupText>Outlet</CInputGroupText>
 
-                    <CFormSelect className="text-left" aria-label="Default select example" value={outletid} onChange={handleOutletId} >
+                    <CFormSelect
+                      className="text-left"
+                      aria-label="Default select example"
+                      value={outletid}
+                      onChange={handleOutletId}
+                    >
                       <option>Select Outlet</option>
-                     {
-                      ouletInfo ? ouletInfo.map((item, index)=>(
-                        <option key={index} value={item.outletId}>{item.locality}</option>
-                      )):null
-                     }
+                      {ouletInfo
+                        ? ouletInfo.map((item, index) => (
+                            <option key={index} value={item.outletId}>
+                              {item.locality}
+                            </option>
+                          ))
+                        : null}
                     </CFormSelect>
                   </CInputGroup>
                   {outletidErr && <p style={{ color: 'red' }}>{outletidErr}</p>}
@@ -203,44 +216,47 @@ function Addbanner() {
                   <CInputGroup className="mb-3">
                     <CInputGroupText>Active:</CInputGroupText>
                     <CFormInput
-                      type="Number"
-                      placeholder="Enter active"
-                      name="is_active"
-                      onChange={handleActive}
+                      type="text"
+                      disabled
+                      placeholder="1"
+                      // name="is_active"
+                      // onChange={handleActive}
                     />
                   </CInputGroup>
                   {activeErr && <p style={{ color: 'red' }}>{activeErr}</p>}
                   <CInputGroup className="mb-3">
                     <CInputGroupText>Fix :</CInputGroupText>
                     <CFormInput
-                      type="Number"
+                      type="text"
                       placeholder="Enter fix"
                       name="is_fix"
                       onChange={handleFix}
                     />
                   </CInputGroup>
                   {fixErr && <p style={{ color: 'red' }}>{fixErr}</p>}
+                  {fix == '0' ? (
+                    <div className="date">
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText>To Date:</CInputGroupText>
+                        <CFormInput
+                          type="date"
+                          placeholder="Enter date"
+                          name="todate"
+                          onChange={handleToDate}
+                        />
+                      </CInputGroup>
 
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>To Date:</CInputGroupText>
-                    <CFormInput
-                      type="date"
-                      placeholder="Enter date"
-                      name="todate"
-                      onChange={handleToDate}
-                    />
-                  </CInputGroup>
-                  {todateErr && <p style={{ color: 'red' }}>{todateErr}</p>}
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>From Date:</CInputGroupText>
-                    <CFormInput
-                      type="date"
-                      placeholder="Enter date"
-                      name="fromDate"
-                      onChange={handleFromdate}
-                    />
-                  </CInputGroup>
-                  {fromdateErr && <p style={{ color: 'red' }}>{fromdateErr}</p>}
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText>From Date:</CInputGroupText>
+                        <CFormInput
+                          type="date"
+                          placeholder="Enter date"
+                          name="fromDate"
+                          onChange={handleFromdate}
+                        />
+                      </CInputGroup>
+                    </div>
+                  ) : null}
                   <CInputGroup className="mb-4">
                     <CFormInput type="file" name="uploadfile" onChange={handleFile} />
                   </CInputGroup>

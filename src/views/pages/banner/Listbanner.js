@@ -35,7 +35,7 @@ const Listbanner = () => {
       try {
         const result = await axios.get('http://localhost:7777/list')
         const response = result.data.data
-
+          console.log(response)
         const list = []
 
         for (let i = 0; i < response.length; i++) {

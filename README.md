@@ -202,3 +202,5 @@ There is only one limitation you can't can’t re-distribute the CoreUI as stock
 const uri=`http://localhost:7777/managerlist?outletId=${outletId}`;
 // const path = outletId ? uri:`http://localhost:/managerlist?accessType=${All}`
   
+
+   "start": "SET PORT=3001 && react-scripts start",
