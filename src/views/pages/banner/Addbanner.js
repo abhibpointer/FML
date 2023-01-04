@@ -25,8 +25,8 @@ function Addbanner() {
   const [todate, setToDate] = useState('')
   const [fromdate, setFromDate] = useState('')
   const [file, setFile] = useState(null)
-  const [message, setMessage] = useState('')
-  console.log(outletid)
+  // const [message, setMessage] = useState('')
+
   //Drop down state
   const [ouletInfo, setOutletInfo] =useState('')
 
@@ -158,7 +158,8 @@ function Addbanner() {
       .post(uri, formData)
       .then((res) => {
         console.log(res)
-        setMessage('Successfully banner data added')
+        alert('Successfully banner data added');
+        window.location.reload();
       })
       .catch(() => {
         setMessageErr('Please enter above information')
@@ -173,7 +174,7 @@ function Addbanner() {
               <CCardBody className="p-4">
                 <CForm className='starlabel'>
                   <h1 className="text-center bg-light">Add your Banner</h1>
-                  <p className="text-medium-emphasis text-center">{message}</p>
+                  {/* <p className="text-medium-emphasis text-center">{message}</p> */}
                   <CInputGroup className="mb-3">
                     <CInputGroupText className='CInputGroupText'>Banner Title:</CInputGroupText>
                     <CFormInput

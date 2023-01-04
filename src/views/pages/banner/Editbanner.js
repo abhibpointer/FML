@@ -27,36 +27,13 @@ function Editbanner() {
   const [todate, setToDate] = useState('')
   const [fromdate, setFromDate] = useState('')
   const [file, setFile] = useState(null)
-  const [message, setMessage] = useState('')
+  //const [message, setMessage] = useState('')
   const [getFile, setGetFile] = useState(null)
   const [messageErr, setMessageErr] = useState('')
   console.log(banner_title)
 
   //Dropdown oulet data
   const [outletInfo, setOuletInfo] = useState([])
-
-  const [banner_titleErr, setBanner_titleErr] = useState(false)
-  const [outlet_idErr, setOutlet_idErr] = useState(false)
-
-  // const handleTitle = (e) => {
-  //   let title = e.target.value
-  //   if (title == null || title == '') {
-  //     setBanner_titleErr('Banner title is required')
-  //   } else {
-  //     setBanner_titleErr(false), setBanner_titleErr('')
-  //   }
-  //   setTitle(title)
-  // }
-
-  // const handleoutlet = (e) => {
-  //   let oulet = e.target.value
-  //   if (!Number(oulet) || oulet == '' || oulet == null) {
-  //     setOutlet_idErr('Oulet Id is requied')
-  //   } else {
-  //     setOutlet_idErr(false), setOutlet_idErr('')
-  //   }
-  //   setOutletId(oulet)
-  // }
 
   const isValidFileUploaded=(file)=>{
     const validExtensions = ['png','jpeg','jpg']
@@ -134,7 +111,8 @@ function Editbanner() {
     axios
       .put(`http://localhost:7777/update/${id}`, formData)
       .then((res) => {
-        setMessage('Successfully banner data updated')
+        alert('Successfully banner data updated');
+        window.location.reload()
       })
       .catch(() => {
         setMessageErr('Please enter above infromation')
@@ -151,7 +129,7 @@ function Editbanner() {
               <CCardBody className="p-4">
                 <CForm>
                   <h1 className="text-center bg-light">Edit your Banner</h1>
-                  <p className="text-medium-emphasis text-center">{message}</p>
+                  {/* <p className="text-medium-emphasis text-center">{message}</p> */}
                   <CInputGroup className="mb-3">
                     <CInputGroupText>Banner Title:</CInputGroupText>
                     <CFormInput

@@ -29,7 +29,7 @@ const Listbanner = () => {
   const baseUri = 'http://localhost:7777/'
   const [values, setValues] = useState([])
   const [message, setMessage] = useState('')
- console.log(values)
+  console.log(values)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -81,16 +81,22 @@ const Listbanner = () => {
 
   //Date converter
   const date = (date) => {
-    const dateConverter =format(new Date(date), 'yyyy/MM/dd') 
+    const dateConverter = format(new Date(date), 'yyyy/MM/dd')
     return dateConverter
   }
 
   return (
     <>
-    <br />  
+      <br />
       <div className="flex-right">
         <Link to="/pages/banner/Addbanner">
-          <button className="btn btn-primary btn-lg" style={{display:'flex', justifyContent:'flex-end '}}> Create </button>
+          <button
+            className="btn btn-primary btn-lg"
+           // style={{ display: 'flex', justifyContent: 'flex-end ' }}
+          >
+            {' '}
+            Create
+          </button>
         </Link>
       </div>
       <div />
@@ -114,44 +120,49 @@ const Listbanner = () => {
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  {values &&
-                    values.map((item, index) => (
-                      <CTableRow key={index} className="text-center">
-                        <CTableDataCell>{index + 1}</CTableDataCell>
-                        <CTableDataCell>{item.outlet_id}</CTableDataCell>
-                        <CTableDataCell>{item.banner.banner_title}</CTableDataCell>
-                        <CTableDataCell>
-                          {
-                            <img
-                              src={baseUri + item.banner.image_path}
-                              height="40px"
-                              width="40px"
-                              border-radius="5px"
-                            />
-                          }
-                        </CTableDataCell>
-                        <CTableDataCell>{item.banner.is_active}</CTableDataCell>
-                        <CTableDataCell>{item.banner.is_fix}</CTableDataCell>
-                        <CTableDataCell>{date(item.banner.duration.todate)}</CTableDataCell>
-                        <CTableDataCell>{date(item.banner.duration.fromdate)}</CTableDataCell>
-                        {/* <div> */}
-                        <CTableDataCell>
-                          <div>
-                            <button
-                              className="btn btn-info"
-                              type="button"
-                              onClick={() => handleProcess(item.banner._id)}
-                            >
-                              Edit
-                            </button>{' '}
-                            <button className="btn btn-danger" onClick={() => toDelete(item._id)}>
-                              Delete
-                            </button>
-                          </div>
-                        </CTableDataCell>
-                        {/* </div> */}
-                      </CTableRow>
-                    ))}
+                  {values
+                    ? values.map((item, index) => (
+                        <CTableRow key={index} className="text-center">
+                          <CTableDataCell>{index + 1}</CTableDataCell>
+                          <CTableDataCell>{item.outlet_id}</CTableDataCell>
+                          <CTableDataCell>{item.banner.banner_title}</CTableDataCell>
+                          <CTableDataCell>
+                            {
+                              <img
+                                src={baseUri + item.banner.image_path}
+                                height="40px"
+                                width="50px"
+                                border-radius="5px"
+                              />
+                            }
+                          </CTableDataCell>
+                          <CTableDataCell>{item.banner.is_active}</CTableDataCell>
+                          <CTableDataCell>{item.banner.is_fix}</CTableDataCell>
+                          <CTableDataCell>
+                            {item.banner.is_fix == 0 ? date(item.banner.duration.todate) : '-'}
+                          </CTableDataCell>
+                          <CTableDataCell>
+                            {item.banner.is_fix == 0 ? date(item.banner.duration.fromdate) : '-'}
+                          </CTableDataCell>
+                          {/* <div> */}
+                          <CTableDataCell>
+                            <div>
+                              <button
+                                className="btn btn-info"
+                                type="button"
+                                onClick={() => handleProcess(item.banner._id)}
+                              >
+                                Edit
+                              </button>{' '}
+                              <button className="btn btn-danger" onClick={() => toDelete(item._id)}>
+                                Delete
+                              </button>
+                            </div>
+                          </CTableDataCell>
+                          {/* </div> */}
+                        </CTableRow>
+                      ))
+                    : null}
                 </CTableBody>
               </CTable>
             </CCardBody>
