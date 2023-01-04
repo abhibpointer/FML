@@ -22,13 +22,13 @@ function Addbanner() {
   const ref = useRef(null)
   const [title, setTitle] = useState('')
   const [outletid, setOutletId] = useState('')
-  const [active, setActive] = useState('')
+  const [active, setActive] = useState(1)
   const [fix, setFix] = useState('')
   const [todate, setToDate] = useState('')
   const [fromdate, setFromDate] = useState('')
   const [file, setFile] = useState(null)
   // const [message, setMessage] = useState('')
-  console.log(fix)
+  console.log(active)
 
   //Drop down state
   const [ouletInfo, setOutletInfo] = useState('')
@@ -36,7 +36,7 @@ function Addbanner() {
   //Error validation
   const [titleErr, setTitleErr] = useState(false)
   const [outletidErr, setOutletErr] = useState(false)
-  const [activeErr, setActiveErr] = useState(false)
+  //const [activeErr, setActiveErr] = useState(false)
   const [fixErr, setFixErr] = useState(false)
   const [todateErr, setTodateErr] = useState(false)
   const [fromdateErr, setFromdateErr] = useState(false)
@@ -63,16 +63,17 @@ function Addbanner() {
     setOutletId(outletId)
   }
 
-  const handleActive = (e) => {
-    let active = e.target.value
-    let re = /[1]/g
-    if (!re.test(active) || active.trim() == null) {
-      setActiveErr('Active is required')
-    } else {
-      setActiveErr(false), setActiveErr('')
-    }
-    setActive(active)
-  }
+  // const handleActive = (e) => {
+  //   let active = e.target.value
+  //   let re = /[1]/g
+  //   if (!re.test(active) || active.trim() == null) {
+  //     setActiveErr('Active is required')
+  //   } else {
+  //     setActiveErr(false), setActiveErr('')
+  //   }
+  //   setActive(active)
+  // }
+ 
 
   const handleFix = (e) => {
     let fix = e.target.value
@@ -213,17 +214,19 @@ function Addbanner() {
                   </CInputGroup>
                   {outletidErr && <p style={{ color: 'red' }}>{outletidErr}</p>}
                   <br />
-                  <CInputGroup className="mb-3">
+
+                  {/* <CInputGroup className="mb-3">
                     <CInputGroupText>Active:</CInputGroupText>
                     <CFormInput
                       type="text"
-                      disabled
-                      placeholder="1"
+
+                      placeholder="Active"
                       // name="is_active"
                       // onChange={handleActive}
                     />
                   </CInputGroup>
-                  {activeErr && <p style={{ color: 'red' }}>{activeErr}</p>}
+                  {activeErr && <p style={{ color: 'red' }}>{activeErr}</p>} */}
+
                   <CInputGroup className="mb-3">
                     <CInputGroupText>Fix :</CInputGroupText>
                     <CFormInput
