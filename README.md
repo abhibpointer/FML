@@ -204,3 +204,5 @@ const uri=`http://localhost:7777/managerlist?outletId=${outletId}`;
   
 
    "start": "SET PORT=3001 && react-scripts start",
+
+   new Date(date,'dd/mm/yyyy').toISOString.().slice(0,10)

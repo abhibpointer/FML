@@ -3,6 +3,10 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { format } from 'date-fns'
+import dayjs from 'dayjs'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+
 import {
   CButton,
   CCard,
@@ -21,39 +25,40 @@ function Editbanner() {
   const { id } = useParams()
 
   const [banner_title, setTitle] = useState('')
+
   const [outlet_id, setOutletId] = useState('')
   const [is_active, setActive] = useState('')
   const [is_fix, setFix] = useState('')
+
   const [todate, setToDate] = useState('')
   const [fromdate, setFromDate] = useState('')
+
   const [file, setFile] = useState(null)
   //const [message, setMessage] = useState('')
   const [getFile, setGetFile] = useState(null)
   const [messageErr, setMessageErr] = useState('')
-  console.log(banner_title)
 
   //Dropdown oulet data
   const [outletInfo, setOuletInfo] = useState([])
 
-  const isValidFileUploaded=(file)=>{
-    const validExtensions = ['png','jpeg','jpg']
+  const isValidFileUploaded = (file) => {
+    const validExtensions = ['png', 'jpeg', 'jpg']
     const fileExtension = file.type.split('/')[1]
     return validExtensions.includes(fileExtension)
   }
-  
-  const fileChange = e => {
-      if(e.target.files.length < 1){
-        return;
-      }
-      const file = e.target.files[0];
-      if(isValidFileUploaded(file)){
-        setFile(file)
-      }else{
-        alert('Please enter valid formate file')
-        window.location.reload()
-      }
+
+  const fileChange = (e) => {
+    if (e.target.files.length < 1) {
+      return
+    }
+    const file = e.target.files[0]
+    if (isValidFileUploaded(file)) {
+      setFile(file)
+    } else {
+      alert('Please enter valid formate file')
+      window.location.reload()
+    }
   }
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,32 +74,45 @@ function Editbanner() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        
         const getData = await axios.get(`http://localhost:7777/list/${id}`)
         let items = getData.data.data
-        console.log(items)
-
+          const item= items.banner.find(obj => obj._id == id);
+     
         setOutletId(items.outlet_id)
-        setTitle(items.banner[0].banner_title)
-        setActive(items.banner[0].is_active)
-        setFix(items.banner[0].is_fix)
+        setTitle(item.banner_title) 
+        setActive(item.is_active)
+        setFix(item.is_fix)
+        setGetFile(item.image_path)
 
-         // need to improve here
-        // const val1 = items.banner[0].duration.todate
-        // const date = (date) => {
-        //   const dateConverter = format(new Date(date), 'dd/mm/yyyy')
-        //   return dateConverter
-        // }
-        // setToDate(date(val1))
-        // const val2 = items.banner[0].duration.fromdate
-        // setFromDate(date(val2))
+     //   need to improve here
+        const date = (date) => {
+          const dat = format(new Date(date), 'dd/MM/yyyy').toLocaleString()
+          return dat
+        }
+        const val1 = item.duration.todate
+        setToDate(date(val1))
 
-        setGetFile(items.banner[0].image_path)
+        const val2 = item.duration.fromdate
+        setFromDate(date(val2))
+
+        //need to imporove above
       } catch (error) {
         console.log(error.message)
       }
     }
     fetchData()
   }, [])
+
+  const handletodate = (date) => {
+    let b = format(new Date(date), 'dd/MM/yyyy').toLocaleString()
+    setToDate(b)
+  }
+
+  const handleFromdate = (date) => {
+    let b = format(new Date(date), 'dd/MM/yyyy').toLocaleString()
+    setFromDate(b)
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -107,11 +125,12 @@ function Editbanner() {
     formData.append('todate', todate)
     formData.append('fromdate', fromdate)
     formData.append('uploadfile', file)
-
+   
     axios
       .put(`http://localhost:7777/update/${id}`, formData)
       .then((res) => {
-        alert('Successfully banner data updated');
+        console.log(res)
+        alert('Successfully banner data updated')
         window.location.reload()
       })
       .catch(() => {
@@ -174,32 +193,40 @@ function Editbanner() {
                       onChange={(e) => setFix(e.target.value)}
                     />
                   </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>To Date:</CInputGroupText>
-                    <CFormInput
-                      type="date"
-                      placeholder="Enter date"
-                      name="todate"
-                      value={todate}
-                      onChange={(e) => setToDate(e.target.value)}
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>From Date:</CInputGroupText>
-                    <CFormInput
-                      type="date"
-                      placeholder="Enter date"
-                      name="fromDate"
-                      value={fromdate}
-                      onChange={(e) => setFromDate(e.target.value)}
-                    />
-                  </CInputGroup>
+                  {
+                    is_fix == '0' ? (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                      <CInputGroup className="mb-3">
+                        {/* <lable>To Date:</lable>  */}
+                        <CInputGroupText>From Date :</CInputGroupText>
+                        <DatePicker
+                          disableFuture
+                          value={todate}
+                          openTo="year"
+                          dateFormat="dd/MM/yyyy"
+                          max={todate}
+                          onChange={handletodate}
+                          isClearable
+                        />
+                        {/* {console.log(todate)} */}
+                      </CInputGroup>
+                      <CInputGroup className="mb-3">
+                        {/* <lable>From Date:</lable> */}
+                        <CInputGroupText>From Date :</CInputGroupText>
+                        <DatePicker
+                          disableFuture
+                          value={fromdate}
+                          dateFormat="dd/MM/yyyy"
+                          name="fromDate"
+                          isClearable
+                          onChange={handleFromdate}
+                        />
+                      </CInputGroup>
+                    </div>
+                    ):null
+                  }               
                   <CInputGroup className="mb-4">
-                    <CFormInput
-                      type="file"
-                      name="uploadfile"
-                      onChange={fileChange}
-                    />
+                    <CFormInput type="file" name="uploadfile" onChange={fileChange} />
                   </CInputGroup>
                   <p className="text-medium-emphasis text-left pd-30px">{getFile}</p>
                   <div className="d-grid">

@@ -29,13 +29,14 @@ const Listbanner = () => {
   const baseUri = 'http://localhost:7777/'
   const [values, setValues] = useState([])
   const [message, setMessage] = useState('')
-  console.log(values)
+ // console.log(values)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await axios.get('http://localhost:7777/list')
         const response = result.data.data
-          console.log(response)
+         // console.log(response)
         const list = []
 
         for (let i = 0; i < response.length; i++) {
@@ -66,7 +67,9 @@ const Listbanner = () => {
             return val._id !== id
           }),
         )
-        setMessage('Successfully banner data deleted')
+      //  setMessage('Successfully banner data deleted')
+      alert('Successfully banner data deleted')
+      window.location.reload()
       })
       .catch((error) => {
         console.log(error.message)
@@ -76,15 +79,16 @@ const Listbanner = () => {
 
   //Navigate to Edit page
   const handleProcess = (id) => {
+    console.log(id)
     navigate(`/pages/banner/Editbanner/${id}`)
   }
 
   //Date converter
   const date = (date) => {
-    const dateConverter = format(new Date(date), 'yyyy/MM/dd')
-    return dateConverter
+    let b =format(new Date(date), 'dd/MM/yyyy').toLocaleString()
+    return b
   }
-
+  
   return (
     <>
       <br />
@@ -154,7 +158,10 @@ const Listbanner = () => {
                               >
                                 Edit
                               </button>{' '}
-                              <button className="btn btn-danger" onClick={() => toDelete(item._id)}>
+                              {/* {
+                                console.log(item.banner._id)
+                              } */}
+                              <button className="btn btn-danger" onClick={() => toDelete(item.banner._id)}>
                                 Delete
                               </button>
                             </div>
