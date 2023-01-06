@@ -195,10 +195,25 @@ function Editbanner() {
                   </CInputGroup>
                   {
                     is_fix == '0' ? (
-                      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                      <CInputGroup className="mb-3">
-                        {/* <lable>To Date:</lable>  */}
-                        <CInputGroupText>From Date :</CInputGroupText>
+                      <div className='row g-3'>
+                      <div className='col-sm'> 
+                      <CInputGroup>
+                        <lable>From Date:</lable>
+                        {/* <CInputGroupText>From Date :</CInputGroupText> */}
+                        <DatePicker
+                          disableFuture
+                          value={fromdate}
+                          dateFormat="dd/MM/yyyy"
+                          name="fromDate"
+                          isClearable
+                          onChange={handleFromdate}
+                        />
+                      </CInputGroup>
+                      </div>
+                        <div className='col-sm'>
+                      <CInputGroup>
+                        <lable>To Date:</lable> 
+                        {/* <CInputGroupText>From Date :</CInputGroupText> */}
                         <DatePicker
                           disableFuture
                           value={todate}
@@ -210,22 +225,12 @@ function Editbanner() {
                         />
                         {/* {console.log(todate)} */}
                       </CInputGroup>
-                      <CInputGroup className="mb-3">
-                        {/* <lable>From Date:</lable> */}
-                        <CInputGroupText>From Date :</CInputGroupText>
-                        <DatePicker
-                          disableFuture
-                          value={fromdate}
-                          dateFormat="dd/MM/yyyy"
-                          name="fromDate"
-                          isClearable
-                          onChange={handleFromdate}
-                        />
-                      </CInputGroup>
+                      </div>  
                     </div>
                     ):null
-                  }               
-                  <CInputGroup className="mb-4">
+                  } 
+                  <br></br>              
+                  <CInputGroup className="mb-3">
                     <CFormInput type="file" name="uploadfile" onChange={fileChange} />
                   </CInputGroup>
                   <p className="text-medium-emphasis text-left pd-30px">{getFile}</p>
