@@ -206,3 +206,31 @@ const uri=`http://localhost:7777/managerlist?outletId=${outletId}`;
    "start": "SET PORT=3001 && react-scripts start",
 
    new Date(date,'dd/mm/yyyy').toISOString.().slice(0,10)
+
+      // if(req.file.filename != null){
+   
+    // }else{
+       
+    // }
+
+     /*if(req.file != undefined || req.file != "") {
+      const file = "banner/" + req.file.filename;
+      updateData = [
+
+
+
+
+                 const updateData = [
+        {
+          banner_title: banner_title,
+          is_active: is_active,
+         // image_path:file,
+          is_fix: is_fix,
+          duration: time,
+        },
+      ];
+      const isExistBanner = await banner.update(
+        { "banner._id": id },
+        { $set: { 
+          "banner.$.banner_title": ,
+       } }

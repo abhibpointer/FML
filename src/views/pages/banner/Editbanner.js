@@ -33,37 +33,39 @@ function Editbanner() {
   const [todate, setToDate] = useState('')
   const [fromdate, setFromDate] = useState('')
 
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState('')
   //const [message, setMessage] = useState('')
-  const [getFile, setGetFile] = useState(null)
+  const [getFile, setGetFile] = useState('')
+
   const [messageErr, setMessageErr] = useState('')
 
   //Dropdown oulet data
   const [outletInfo, setOuletInfo] = useState([])
+
+    // const preFile = getFile.split('/')[1]
+    // console.log(preFile)
 
   const isValidFileUploaded = (file) => {
     const validExtensions = ['png', 'jpeg', 'jpg']
     const fileExtension = file.type.split('/')[1]
     return validExtensions.includes(fileExtension)
   }
-
+   
   const fileChange = (e) => {
-    if (e.target.files.length < 1) {
-      return
-    }
-    const file = e.target.files[0]
+    const file = e.target.files[0] 
+  
     if (isValidFileUploaded(file)) {
       setFile(file)
     } else {
-      alert('Please enter valid formate file')
-      window.location.reload()
+    alert('Please enter valid formate file')
+    window.location.reload()
     }
+     
   }
-
+  // fileChange(preFile)
   useEffect(() => {
     const fetchData = async () => {
       await axios.get('http://localhost:7777/outletlist').then((res) => {
-        // console.log(res.data.data)
         setOuletInfo(res.data.data)
       }, [])
     }
@@ -88,12 +90,11 @@ function Editbanner() {
           const dat = format(new Date(date), 'dd/MM/yyyy').toLocaleString()
           return dat
         }
+
         const val1 = item.duration.todate
         setToDate(date(val1))
-
         const val2 = item.duration.fromdate
         setFromDate(date(val2))
-
       } catch (error) {
         console.log(error.message)
       }
@@ -206,7 +207,9 @@ function Editbanner() {
                   <div className="col-md-6">
                     <label className="form-label">Active :</label>
                     <input
-                      type="text"
+                      type="Number"
+                      min='0'
+                      max='1'
                       className="form-control"
                       placeholder="Enter active"
                       name="is_active"
@@ -219,7 +222,9 @@ function Editbanner() {
                       Fix :
                     </label>
                     <input
-                      type="text"
+                      type="Number"
+                      min='0'
+                      max='1'
                       className="form-control"
                       placeholder="Enter fix"
                       name="is_fix"
@@ -246,7 +251,7 @@ function Editbanner() {
                     />
                   </CInputGroup> */}
                   {is_fix == '0' ? (
-                    <div className='row g-3'>
+                    <div className="row g-3">
                       <div className="col-md-6">
                         <label className="form-label">From Date:</label>
                         <DatePicker
@@ -259,26 +264,30 @@ function Editbanner() {
                           onChange={handleFromdate}
                         />
                       </div>
-                      <div className="col-md-6">  
-                          <label className='form-label'>To Date:</label>
-                          <DatePicker
-                            disableFuture
-                            className="form-control"
-                            value={todate}
-                            openTo="year"
-                            dateFormat="dd/MM/yyyy"
-                            max={todate}
-                            onChange={handletodate}
-                            isClearable
-                          />
-                          {/* {console.log(todate)} */}
+                      <div className="col-md-6">
+                        <label className="form-label">To Date:</label>
+                        <DatePicker
+                          disableFuture
+                          className="form-control"
+                          value={todate}
+                          openTo="year"
+                          dateFormat="dd/MM/yyyy"
+                          max={todate}
+                          onChange={handletodate}
+                          isClearable
+                        />
+                        {/* {console.log(todate)} */}
                       </div>
                     </div>
-                    
                   ) : null}
-                 
+
                   <div className="mb-3">
-                    <input type="file" className='form-control' name="uploadfile" onChange={fileChange} />
+                    <input
+                      type="file"
+                      className="form-control"
+                      name="uploadfile"
+                      onChange={fileChange}
+                    />
                   </div>
                   <p className="text-medium-emphasis text-left pd-30px">{getFile}</p>
                   <div className="d-grid">

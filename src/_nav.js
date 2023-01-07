@@ -53,7 +53,7 @@ const _nav = [
     component: CNavItem,
     name: 'Banner',
     to: '/pages/banner/Listbanner',
-     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    //  icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
    component: CNavItem,

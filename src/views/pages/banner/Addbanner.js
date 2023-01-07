@@ -256,7 +256,7 @@ function Addbanner() {
                     </div>
                   ) : null}
                   <CInputGroup className="mb-4">
-                    <CFormInput type="file" name="uploadfile" onChange={handleFile} />
+                    <CFormInput type="file" className="filetype" name="uploadfile" onChange={handleFile} />
                   </CInputGroup>
                   {fileErr && <p style={{ color: 'red' }}>{fileErr}</p>}
                   <div className="d-grid">
