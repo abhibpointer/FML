@@ -126,7 +126,7 @@ const Listbanner = () => {
                 <CTableBody>
                   {values
                     ? values.map((item, index) => (
-                        <CTableRow key={index} className="text-center">
+                        <CTableRow key={index} className="text-center ">
                           <CTableDataCell>{index + 1}</CTableDataCell>
                           <CTableDataCell>{item.outlet_id}</CTableDataCell>
                           <CTableDataCell>{item.banner.banner_title}</CTableDataCell>
@@ -134,6 +134,7 @@ const Listbanner = () => {
                             {
                               <img
                                 src={baseUri + item.banner.image_path}
+                                className='rounded'
                                 height="40px"
                                 width="50px"
                                 border-radius="5px"

@@ -22,7 +22,7 @@ function Addbanner() {
   const ref = useRef(null)
   const [title, setTitle] = useState('')
   const [outletid, setOutletId] = useState('')
-  const [active, setActive] = useState(1)
+   const [active, setActive] = useState(1)
   const [fix, setFix] = useState('')
   const [todate, setToDate] = useState('')
   const [fromdate, setFromDate] = useState('')
@@ -36,7 +36,7 @@ function Addbanner() {
   //Error validation
   const [titleErr, setTitleErr] = useState(false)
   const [outletidErr, setOutletErr] = useState(false)
-  //const [activeErr, setActiveErr] = useState(false)
+  // const [activeErr, setActiveErr] = useState(false)
   const [fixErr, setFixErr] = useState(false)
   const [todateErr, setTodateErr] = useState(false)
   const [fromdateErr, setFromdateErr] = useState(false)
@@ -79,7 +79,7 @@ function Addbanner() {
     let fix = e.target.value
     let re = /[0-1]/g
     if (!re.test(fix) || fix.trim() == null) {
-      setFixErr('Fix number must be between 0 to 1')
+      setFixErr('Enter number must be 0 and 1')
     } else {
       setFixErr(false), setFixErr('')
     }
@@ -89,7 +89,7 @@ function Addbanner() {
   const handleToDate = (e) => {
     let todate = e.target.value
     if (todate == '') {
-      setTodateErr('To date is required')
+      setTodateErr('Date is required')
     } else {
       setTodateErr(false), setTodateErr('')
     }
@@ -106,16 +106,6 @@ function Addbanner() {
     setFromDate(fromdate)
   }
 
-  // const handleFile = (e) => {
-  //   let file = e.target.files[0]
-  //   if (!file || file.length == 0) {
-  //     setFileErr('File is required')
-  //   } else {
-  //     setFileErr(false), setFileErr('')
-  //   }
-  //   setFile(file)
-  // }
-
   const isValidFileUploaded = (file) => {
     const validExtensions = ['png', 'jpeg', 'jpg']
     const fileExtension = file.type.split('/')[1]
@@ -131,7 +121,7 @@ function Addbanner() {
       setFile(file)
     } else {
       alert('Please enter valid formate file')
-      window.location.reload()
+      window.location.reload();
     }
   }
 
@@ -179,26 +169,25 @@ function Addbanner() {
           <CCol md={9} lg={7} xl={6}>
             <CCard className="mx-4">
               <CCardBody className="p-4">
-                <CForm className="starlabel">
-                  <h1 className="text-center bg-light">Add your Banner</h1>
+                <CForm className="row g-3">
+                  <h2 className="text-center bg-light">Add Banner</h2>
                   {/* <p className="text-medium-emphasis text-center">{message}</p> */}
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText className="CInputGroupText">Banner Title:</CInputGroupText>
-                    <CFormInput
+                  <div className="col-md-12">
+                    <label className="form-label">Banner Title :</label>
+                    <input
+                      type="text"
+                      className="form-control"
                       placeholder="Enter Title"
                       name="banner_title"
-                      value={title}
                       onChange={handleTitle}
                     />
-                  </CInputGroup>
+                  </div>
                   {titleErr && <p style={{ color: 'red' }}>{titleErr}</p>}
 
-                  <CInputGroup className="mb03">
-                    <CInputGroupText>Outlet</CInputGroupText>
-
+                  <div className="col-md-12">
+                    <label className="form-label">Oulet :</label>
                     <CFormSelect
                       className="text-left"
-                      aria-label="Default select example"
                       value={outletid}
                       onChange={handleOutletId}
                     >
@@ -211,53 +200,59 @@ function Addbanner() {
                           ))
                         : null}
                     </CFormSelect>
-                  </CInputGroup>
+                  </div>
                   {outletidErr && <p style={{ color: 'red' }}>{outletidErr}</p>}
                   <br />
 
-                  {/* <CInputGroup className="mb-3">
-                    <CInputGroupText>Active:</CInputGroupText>
-                    <CFormInput
+                   {/* <div className="col-mb-6">
+                    <label className='form-label'>Active:</label>
+                    <input
                       type="text"
-
-                      placeholder="Active"
-                      // name="is_active"
-                      // onChange={handleActive}
+                      placeholder="1"
+                      disabled
+                      className='form-control'
+                      name="is_active"
+                      onChange={handleActive}
                     />
-                  </CInputGroup>
-                  {activeErr && <p style={{ color: 'red' }}>{activeErr}</p>} */}
+                  </div>
+                  {activeErr && <p style={{ color: 'red' }}>{activeErr}</p>}  */}
 
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>Fix :</CInputGroupText>
-                    <CFormInput
+                  <div className="col-md-12">
+                    <label className="form-label">
+                      Fix :
+                    </label>
+                    <input
                       type="text"
+                      className="form-control"
                       placeholder="Enter fix"
                       name="is_fix"
                       onChange={handleFix}
                     />
-                  </CInputGroup>
+                  </div>
+
                   {fixErr && <p style={{ color: 'red' }}>{fixErr}</p>}
                   {fix == '0' ? (
-                    <div className="date">
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>To Date:</CInputGroupText>
-                        <CFormInput
+                    <div className="row g-3">
+                      <div className="col-md-6">
+                      <label className="form-label"> To Date :</label>
+                        <input
                           type="date"
+                          className="form-control"
                           placeholder="Enter date"
                           name="todate"
                           onChange={handleToDate}
                         />
-                      </CInputGroup>
-
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>From Date:</CInputGroupText>
-                        <CFormInput
+                      </div>
+                      <div className="col-md-6">
+                        <label className="form-label"> From Date:</label>
+                        <input
                           type="date"
+                          className="form-control"
                           placeholder="Enter date"
                           name="fromDate"
                           onChange={handleFromdate}
                         />
-                      </CInputGroup>
+                      </div>
                     </div>
                   ) : null}
                   <CInputGroup className="mb-4">

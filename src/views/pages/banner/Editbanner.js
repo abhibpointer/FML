@@ -74,18 +74,16 @@ function Editbanner() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
         const getData = await axios.get(`http://localhost:7777/list/${id}`)
         let items = getData.data.data
-          const item= items.banner.find(obj => obj._id == id);
-     
+        const item = items.banner.find((obj) => obj._id == id)
+
         setOutletId(items.outlet_id)
-        setTitle(item.banner_title) 
+        setTitle(item.banner_title)
         setActive(item.is_active)
         setFix(item.is_fix)
         setGetFile(item.image_path)
 
-     //   need to improve here
         const date = (date) => {
           const dat = format(new Date(date), 'dd/MM/yyyy').toLocaleString()
           return dat
@@ -96,7 +94,6 @@ function Editbanner() {
         const val2 = item.duration.fromdate
         setFromDate(date(val2))
 
-        //need to imporove above
       } catch (error) {
         console.log(error.message)
       }
@@ -125,7 +122,7 @@ function Editbanner() {
     formData.append('todate', todate)
     formData.append('fromdate', fromdate)
     formData.append('uploadfile', file)
-   
+
     axios
       .put(`http://localhost:7777/update/${id}`, formData)
       .then((res) => {
@@ -146,10 +143,10 @@ function Editbanner() {
           <CCol md={9} lg={7} xl={6}>
             <CCard className="mx-4">
               <CCardBody className="p-4">
-                <CForm>
-                  <h1 className="text-center bg-light">Edit your Banner</h1>
+                <CForm className="row g-3">
+                  <h2 className="text-center bg-light">Edit Banner</h2>
                   {/* <p className="text-medium-emphasis text-center">{message}</p> */}
-                  <CInputGroup className="mb-3">
+                  {/* <CInputGroup className="mb-3">
                     <CInputGroupText>Banner Title:</CInputGroupText>
                     <CFormInput
                       placeholder="Enter Title"
@@ -157,7 +154,37 @@ function Editbanner() {
                       value={banner_title}
                       onChange={(e) => setTitle(e.target.value)}
                     />
-                  </CInputGroup>
+                  </CInputGroup> */}
+                  <div className="col-md-12">
+                    <label className="form-label">Banner Title :</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter Title"
+                      name="banner_title"
+                      value={banner_title}
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="col-md-12">
+                    <label className="form-label">Oulet :</label>
+                    <CFormSelect
+                      className="text-left"
+                      value={outlet_id}
+                      onChange={(e) => setOutletId(e.target.value)}
+                    >
+                      <option>Select Outlet</option>
+                      {outletInfo
+                        ? outletInfo.map((item, index) => (
+                            <option key={index} value={item.outletId}>
+                              {item.locality}
+                            </option>
+                          ))
+                        : null}
+                    </CFormSelect>
+                  </div>
+                  {/*                
                   <CInputGroup className="mb-3">
                     <CInputGroupText>Oulet:</CInputGroupText>
                     <CFormSelect
@@ -174,8 +201,33 @@ function Editbanner() {
                           ))
                         : null}
                     </CFormSelect>
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
+                  </CInputGroup> */}
+
+                  <div className="col-md-6">
+                    <label className="form-label">Active :</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter active"
+                      name="is_active"
+                      value={is_active}
+                      onChange={(e) => setActive(e.target.value)}
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label htmlFor="" className="form-label">
+                      Fix :
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter fix"
+                      name="is_fix"
+                      value={is_fix}
+                      onChange={(e) => setFix(e.target.value)}
+                    />
+                  </div>
+                  {/* <CInputGroup className="mb-3">
                     <CInputGroupText>Active:</CInputGroupText>
                     <CFormInput
                       placeholder="Enter active"
@@ -183,8 +235,8 @@ function Editbanner() {
                       value={is_active}
                       onChange={(e) => setActive(e.target.value)}
                     />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
+                  </CInputGroup> */}
+                  {/* <CInputGroup className="mb-3">
                     <CInputGroupText>Fix :</CInputGroupText>
                     <CFormInput
                       placeholder="Enter fix"
@@ -192,52 +244,47 @@ function Editbanner() {
                       value={is_fix}
                       onChange={(e) => setFix(e.target.value)}
                     />
-                  </CInputGroup>
-                  {
-                    is_fix == '0' ? (
-                      <div className='row g-3'>
-                      <div className='col-sm'> 
-                      <CInputGroup>
-                        <lable>From Date:</lable>
-                        {/* <CInputGroupText>From Date :</CInputGroupText> */}
+                  </CInputGroup> */}
+                  {is_fix == '0' ? (
+                    <div className='row g-3'>
+                      <div className="col-md-6">
+                        <label className="form-label">From Date:</label>
                         <DatePicker
                           disableFuture
+                          className="form-control"
                           value={fromdate}
                           dateFormat="dd/MM/yyyy"
                           name="fromDate"
                           isClearable
                           onChange={handleFromdate}
                         />
-                      </CInputGroup>
                       </div>
-                        <div className='col-sm'>
-                      <CInputGroup>
-                        <lable>To Date:</lable> 
-                        {/* <CInputGroupText>From Date :</CInputGroupText> */}
-                        <DatePicker
-                          disableFuture
-                          value={todate}
-                          openTo="year"
-                          dateFormat="dd/MM/yyyy"
-                          max={todate}
-                          onChange={handletodate}
-                          isClearable
-                        />
-                        {/* {console.log(todate)} */}
-                      </CInputGroup>
-                      </div>  
+                      <div className="col-md-6">  
+                          <label className='form-label'>To Date:</label>
+                          <DatePicker
+                            disableFuture
+                            className="form-control"
+                            value={todate}
+                            openTo="year"
+                            dateFormat="dd/MM/yyyy"
+                            max={todate}
+                            onChange={handletodate}
+                            isClearable
+                          />
+                          {/* {console.log(todate)} */}
+                      </div>
                     </div>
-                    ):null
-                  } 
-                  <br></br>              
-                  <CInputGroup className="mb-3">
-                    <CFormInput type="file" name="uploadfile" onChange={fileChange} />
-                  </CInputGroup>
+                    
+                  ) : null}
+                 
+                  <div className="mb-3">
+                    <input type="file" className='form-control' name="uploadfile" onChange={fileChange} />
+                  </div>
                   <p className="text-medium-emphasis text-left pd-30px">{getFile}</p>
                   <div className="d-grid">
-                    <CButton color="btn btn-primary" onClick={handleSubmit}>
+                    <button className="btn btn-primary" onClick={handleSubmit}>
                       Update Banner
-                    </CButton>
+                    </button>
                     {messageErr && (
                       <p className="text-center" style={{ color: 'red' }}>
                         {messageErr}
