@@ -222,7 +222,9 @@ function Addbanner() {
                       Fix :
                     </label>
                     <input
-                      type="text"
+                         type="Number"
+                         min='0'
+                         max='1'
                       className="form-control"
                       placeholder="Enter fix"
                       name="is_fix"
@@ -254,9 +256,15 @@ function Addbanner() {
                       </div>
                     </div>
                   ) : null}
-                  <CInputGroup className="mb-4">
-                    <CFormInput type="file" className="filetype" name="uploadfile" onChange={handleFile} />
-                  </CInputGroup>
+                      <div className="mb-3 mt-3">
+                  <label className="form-label">File Upload :</label>
+                    <input
+                      type="file"
+                      className="form-control"
+                      name="uploadfile"
+                      onChange={handleFile}
+                    />
+                  </div>
                   {fileErr && <p style={{ color: 'red' }}>{fileErr}</p>}
                   <div className="d-grid">
                     <CButton color="btn btn-primary" onClick={handleSubmit}>
