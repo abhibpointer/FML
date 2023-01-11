@@ -240,6 +240,8 @@ function Addbanner() {
                         <input
                           type="date"
                           className="form-control"
+                          min={new Date()}
+                          max={todate}
                           name="fromDate"
                           onChange={handleFromdate}
                         />
@@ -249,7 +251,9 @@ function Addbanner() {
                         <input
                           type="date"
                           className="form-control"
+                          format='yyyy/mm/dd'
                           placeholder="Enter date"
+                          min={fromdate}
                           name="todate"
                           onChange={handleToDate}
                         />

@@ -59,9 +59,9 @@ function DrinkAdd() {
           <CCol md={9} lg={7} xl={6}>
             <CCard className="mx-4">
               <CCardBody className="p-4">
-                <CForm>
-                  <h1 className="text-center bg-light">Add Drink File</h1>
-                  <CInputGroup className="mb-4">
+                <CForm> 
+                  <h2 className="text-center bg-light">Add Drink File</h2>
+                  <CInputGroup className="mb-4 mt-4">
                     <CFormInput type="file" name="uploadfile" onChange={handleFile} />
                   </CInputGroup>
                   {fileErr && <p style={{ color: 'red', textAlign: 'left' }}>{fileErr}</p>}

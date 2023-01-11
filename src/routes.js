@@ -109,16 +109,16 @@ const routes = [
   //Banner opration Routes
   {path: '/pages/banner/Addbanner', name:'Add', element:Banneradd},
   {path: '/pages/banner/Editbanner/:id', name:'Edit', element:Banneredit},
-  {path: '/pages/banner/Listbanner', name:'Banner', element:Bannerlist},
+  {path: '/pages/banner/Listbanner', name:'Banners', element:Bannerlist},
 
   //Manager List Route
   {path: '/pages/list', name:'Manager List', element:Managerlist},
 
   //Food 
-  {path: '/pages/food', name:'Food Add', element:FoodAdd},
+  {path: '/pages/food', name:'Add food excel', element:FoodAdd},
 
   //Drink
-  {path:'/pages/drink', name:'Drink Add', element:DrinkAdd},
+  {path:'/pages/drink', name:'Add food excel', element:DrinkAdd},
 
   //Private Routes  
   {path:'/util', name:'private', element:ProtectedRoute}

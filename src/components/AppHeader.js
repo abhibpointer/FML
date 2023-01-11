@@ -24,17 +24,17 @@ const AppHeader = () => {
 
   return (
     <CHeader position="sticky" className="mb-4">
-      <CContainer fluid>
+      <CContainer >
         <CHeaderToggler
           className="ps-1"
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
         >
-          <CIcon icon={cilMenu} size="lg" />
+          {/* <CIcon icon={cilMenu} size="lg" /> */}
         </CHeaderToggler>
-        <CHeaderBrand className="mx-auto d-md-none" to="/">
+        {/* <CHeaderBrand className="mx-auto d-md-none" to="/">
           <CIcon icon={logo} height={48} alt="Logo" />
-        </CHeaderBrand>
-        <CHeaderNav className="d-none d-md-flex me-auto">
+        </CHeaderBrand> */}
+        {/* <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
             <CNavLink to="#" component={NavLink}>
               Dashboard
@@ -46,8 +46,8 @@ const AppHeader = () => {
           <CNavItem>
             <CNavLink href="#">Settings</CNavLink>
           </CNavItem>
-        </CHeaderNav>
-        <CHeaderNav>
+        </CHeaderNav> */}
+        {/* <CHeaderNav>
           <CNavItem>
             <CNavLink href="#">
               <CIcon icon={cilBell} size="lg" />
@@ -63,8 +63,8 @@ const AppHeader = () => {
               <CIcon icon={cilEnvelopeOpen} size="lg" />
             </CNavLink>
           </CNavItem>
-        </CHeaderNav>
-        <CHeaderNav className="ms-3">
+        </CHeaderNav> */}
+        <CHeaderNav style={{display: 'flex', justifyContent: 'flex-end'}}>
           <AppHeaderDropdown />
         </CHeaderNav>
       </CContainer>

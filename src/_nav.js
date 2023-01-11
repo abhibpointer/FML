@@ -39,37 +39,37 @@ const _nav = [
   //   to: '/login',
   // },
 
+  // {
+  //   component: CNavItem,
+  //   name: 'Dashboard',
+  //   to: '/dashboard1',
+  //   icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavTitle,
+  //   name: 'Banner',
+  // },
   {
     component: CNavItem,
-    name: 'Dashboard',
-    to: '/dashboard1',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavTitle,
-    name: 'Banner',
-  },
-  {
-    component: CNavItem,
-    name: 'Banner',
+    name: 'Banners',
     to: '/pages/banner/Listbanner',
     //  icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
-  {
-   component: CNavItem,
-   name:'Manager List',
-   to:'/pages/list'
-  },
+  // {
+  //  component: CNavItem,
+  //  name:'Manager List',
+  //  to:'/pages/list'
+  // },
 
   {
    component:CNavItem,
-   name:'Food Add',
+   name:'Add food excel',
    to:'/pages/food'
   },
 
   {
     component:CNavItem,
-    name:'Drink Add',
+    name:'Add drink excel',
     to:'/pages/drink'
    },
   // {

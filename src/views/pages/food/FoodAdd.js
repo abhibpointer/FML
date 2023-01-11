@@ -65,8 +65,8 @@ function FoodAdd() {
             <CCard className="mx-4">
               <CCardBody className="p-4">
                 <CForm>
-                  <h1 className="text-center bg-light">Add Food File</h1>
-                  <CInputGroup className="mb-4">
+                  <h2 className="text-center bg-light">Add Food File</h2>
+                  <CInputGroup className="mb-4 mt-4">
                     <CFormInput type="file" name="uploadfile" onChange={handleFile} />
                   </CInputGroup>
                   {fileErr && <p style={{ color: 'red', textAlign: 'left' }}>{fileErr}</p>}
