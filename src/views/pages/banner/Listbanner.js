@@ -58,9 +58,9 @@ const Listbanner = () => {
   }, [])
 
   // Delete data start
-  const toDelete = (id) => {
+  const toDelete = (id, outlet_id) => {
     axios
-      .delete(`http://localhost:7777/delete/${id}`)
+      .delete(`http://localhost:7777/delete/${id}/${outlet_id}`)
       .then(() => {
         setValues(
           values.filter((val) => {
@@ -85,10 +85,9 @@ const Listbanner = () => {
 
   //Date converter
   const date = (date) => {
-    let b =format(new Date(date), 'dd/MM/yyyy').toLocaleString()
+    let b =format(new Date(date), 'yyyy/MM/dd').toLocaleString()
     return b
   }
-  
   return (
     <>
       <br />
@@ -162,7 +161,7 @@ const Listbanner = () => {
                               {/* {
                                 console.log(item.banner._id)
                               } */}
-                              <button className="btn btn-danger" onClick={() => toDelete(item.banner._id)}>
+                              <button className="btn btn-danger" onClick={() => toDelete(item.banner._id,item._id)}>
                                 Delete
                               </button>
                             </div>

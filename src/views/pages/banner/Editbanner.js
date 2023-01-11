@@ -87,7 +87,7 @@ function Editbanner() {
         setGetFile(item.image_path)
 
         const date = (date) => {
-          const dat = format(new Date(date), 'dd/MM/yyyy').toLocaleString()
+          const dat = format(new Date(date), 'yyyy/MM/dd').toLocaleString()
           return dat
         }
 
@@ -103,12 +103,12 @@ function Editbanner() {
   }, [])
 
   const handletodate = (date) => {
-    let b = format(new Date(date), 'dd/MM/yyyy').toLocaleString()
+    let b = format(new Date(date), 'yyyy/MM/dd').toLocaleString()
     setToDate(b)
   }
 
   const handleFromdate = (date) => {
-    let b = format(new Date(date), 'dd/MM/yyyy').toLocaleString()
+    let b = format(new Date(date), 'yyyy/MM/dd').toLocaleString()
     setFromDate(b)
   }
 
@@ -185,25 +185,6 @@ function Editbanner() {
                         : null}
                     </CFormSelect>
                   </div>
-                  {/*                
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>Oulet:</CInputGroupText>
-                    <CFormSelect
-                      className="text-left"
-                      value={outlet_id}
-                      onChange={(e) => setOutletId(e.target.value)}
-                    >
-                      <option>Select Outlet</option>
-                      {outletInfo
-                        ? outletInfo.map((item, index) => (
-                            <option key={index} value={item.outletId}>
-                              {item.locality}
-                            </option>
-                          ))
-                        : null}
-                    </CFormSelect>
-                  </CInputGroup> */}
-
                   <div className="col-md-6">
                     <label className="form-label">Active :</label>
                     <input
@@ -241,15 +222,6 @@ function Editbanner() {
                       onChange={(e) => setActive(e.target.value)}
                     />
                   </CInputGroup> */}
-                  {/* <CInputGroup className="mb-3">
-                    <CInputGroupText>Fix :</CInputGroupText>
-                    <CFormInput
-                      placeholder="Enter fix"
-                      name="is_fix"
-                      value={is_fix}
-                      onChange={(e) => setFix(e.target.value)}
-                    />
-                  </CInputGroup> */}
                   {is_fix == '0' ? (
                     <div className="row g-3">
                       <div className="col-md-6">
@@ -281,7 +253,8 @@ function Editbanner() {
                     </div>
                   ) : null}
 
-                  <div className="mb-3">
+                  <div className="mb-2 mt-3">
+                  <label className="form-label">File Upload :</label>
                     <input
                       type="file"
                       className="form-control"

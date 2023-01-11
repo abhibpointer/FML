@@ -28,7 +28,7 @@ function Addbanner() {
   const [fromdate, setFromDate] = useState('')
   const [file, setFile] = useState(null)
   // const [message, setMessage] = useState('')
-  console.log(active)
+ 
 
   //Drop down state
   const [ouletInfo, setOutletInfo] = useState('')
@@ -233,6 +233,15 @@ function Addbanner() {
                   {fixErr && <p style={{ color: 'red' }}>{fixErr}</p>}
                   {fix == '0' ? (
                     <div className="row g-3">
+                          <div className="col-md-6">
+                        <label className="form-label"> From Date:</label>
+                        <input
+                          type="date"
+                          className="form-control"
+                          name="fromDate"
+                          onChange={handleFromdate}
+                        />
+                      </div>
                       <div className="col-md-6">
                       <label className="form-label"> To Date :</label>
                         <input
@@ -241,16 +250,6 @@ function Addbanner() {
                           placeholder="Enter date"
                           name="todate"
                           onChange={handleToDate}
-                        />
-                      </div>
-                      <div className="col-md-6">
-                        <label className="form-label"> From Date:</label>
-                        <input
-                          type="date"
-                          className="form-control"
-                          placeholder="Enter date"
-                          name="fromDate"
-                          onChange={handleFromdate}
                         />
                       </div>
                     </div>
