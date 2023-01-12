@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import { format } from 'date-fns'
+const {REACT_APP_LOCAL_HOST } = process.env
+import { format } from 'date-fns'  
 import { useRef } from 'react'
 import './Addbanner.css'
+import { useNavigate } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -20,6 +22,7 @@ import {
 
 function Addbanner() {
   const ref = useRef(null)
+  const navigate = useNavigate()
   const [title, setTitle] = useState('')
   const [outletid, setOutletId] = useState('')
    const [active, setActive] = useState(1)
@@ -128,7 +131,7 @@ function Addbanner() {
   // drop down
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get('http://localhost:7777/outletlist').then((res) => {
+      await axios.get(`${REACT_APP_LOCAL_HOST}outletlist`).then((res) => {
         // console.log(res.data.data)
         setOutletInfo(res.data.data)
       })
@@ -148,7 +151,7 @@ function Addbanner() {
     formData.append('fromdate', fromdate)
     formData.append('uploadfile', file)
 
-    const uri = 'http://localhost:7777/add'
+    const uri =`${REACT_APP_LOCAL_HOST}addBanner`
 
     axios
       .post(uri, formData)
@@ -156,6 +159,8 @@ function Addbanner() {
         console.log(res)
         alert('Successfully banner data added')
         window.location.reload()
+        //need to improve on redirection
+        navigate('/pages/banner/Listbanner')
       })
       .catch(() => {
         setMessageErr('Please enter above information')
@@ -171,6 +176,7 @@ function Addbanner() {
               <CCardBody className="p-4">
                 <CForm className="row g-3">
                   <h2 className="text-center bg-light">Add Banner</h2>
+                
                   {/* <p className="text-medium-emphasis text-center">{message}</p> */}
                   <div className="col-md-12">
                     <label className="form-label">Banner Title :</label>

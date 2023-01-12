@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+const {REACT_APP_LOCAL_HOST } = process.env
 //import './style.css'
 
 import {
@@ -54,7 +55,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    axios.post('http://localhost:7778/login', {
+    axios.post(`${REACT_APP_LOCAL_HOST}login`, {
         userName: userName,
         password: password,
       })
@@ -135,6 +136,7 @@ const Login = () => {
                 </CCardBody>
               </CCard>
 
+  
               {/* <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
                 <CCardBody className="text-center">
                   <div>

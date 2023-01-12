@@ -55,12 +55,16 @@ const _nav = [
     to: '/pages/banner/Listbanner',
     //  icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
-  // {
-  //  component: CNavItem,
-  //  name:'Manager List',
-  //  to:'/pages/list'
-  // },
-
+  {
+   component: CNavItem,
+   name:'Manager list',
+   to:'/pages/list/Managerlist'
+  },
+  {
+   component:CNavItem,
+   name:'User list',
+   to:'/pages/list/Userlist'
+  },
   {
    component:CNavItem,
    name:'Add food excel',

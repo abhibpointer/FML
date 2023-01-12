@@ -6,6 +6,7 @@ import { format } from 'date-fns'
 import dayjs from 'dayjs'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+const {REACT_APP_LOCAL_HOST } = process.env
 
 import {
   CButton,
@@ -65,7 +66,7 @@ function Editbanner() {
   // fileChange(preFile)
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get('http://localhost:7777/outletlist').then((res) => {
+      await axios.get(`${REACT_APP_LOCAL_HOST}outletlist`).then((res) => {
         setOuletInfo(res.data.data)
       }, [])
     }
@@ -76,7 +77,7 @@ function Editbanner() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const getData = await axios.get(`http://localhost:7777/list/${id}`)
+        const getData = await axios.get(`${REACT_APP_LOCAL_HOST}getBanner/${id}`)
         let items = getData.data.data
         const item = items.banner.find((obj) => obj._id == id)
 
@@ -124,8 +125,7 @@ function Editbanner() {
     formData.append('fromdate', fromdate)
     formData.append('uploadfile', file)
 
-    axios
-      .put(`http://localhost:7777/update/${id}`, formData)
+    axios.put(`${REACT_APP_LOCAL_HOST}updateBanner/${id}`, formData)
       .then((res) => {
         console.log(res)
         alert('Successfully banner data updated')

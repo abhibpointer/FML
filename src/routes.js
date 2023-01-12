@@ -55,6 +55,7 @@ const Banneradd = React.lazy(()=> import('./views/pages/banner/Addbanner'))
 const Banneredit = React.lazy(()=> import('./views/pages/banner/Editbanner'))
 const Bannerlist = React.lazy(()=> import('./views/pages/banner/Listbanner'))
 const Managerlist = React.lazy(()=> import('./views/pages/list/Managerlist'))
+const Userlist = React.lazy(()=> import('./views/pages/list/Userlist'))
 
 const FoodAdd = React.lazy(()=> import('./views/pages/food/FoodAdd'))
 const DrinkAdd = React.lazy(()=> import('./views/pages/drink/DrinkAdd'))
@@ -112,7 +113,10 @@ const routes = [
   {path: '/pages/banner/Listbanner', name:'Banners', element:Bannerlist},
 
   //Manager List Route
-  {path: '/pages/list', name:'Manager List', element:Managerlist},
+  {path: '/pages/list/Managerlist', name:'Manager list', element:Managerlist},
+
+  // User List Route
+  {path:'/pages/list/Userlist', name:"User list", element:Userlist},
 
   //Food 
   {path: '/pages/food', name:'Add food excel', element:FoodAdd},

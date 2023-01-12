@@ -452,6 +452,7 @@ const Dashboard = () => {
           </CCard>
         </CCol>
       </CRow>
+      
     </>
   )
 }

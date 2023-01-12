@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
+const {REACT_APP_LOCAL_HOST } = process.env
 import {
   CAvatar,
   CButton,
@@ -26,7 +27,7 @@ import {
 const Listbanner = () => {
   // List show data
   const navigate = useNavigate()
-  const baseUri = 'http://localhost:7777/'
+ // const baseUri = `${REACT_APP_LOCAL_HOST}`
   const [values, setValues] = useState([])
   const [message, setMessage] = useState('')
  // console.log(values)
@@ -34,7 +35,7 @@ const Listbanner = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get('http://localhost:7777/list')
+        const result = await axios.get(`${REACT_APP_LOCAL_HOST}getBannerList`)
         const response = result.data.data
          // console.log(response)
         const list = []
@@ -60,7 +61,7 @@ const Listbanner = () => {
   // Delete data start
   const toDelete = (id, outlet_id) => {
     axios
-      .delete(`http://localhost:7777/delete/${id}/${outlet_id}`)
+      .delete(`${REACT_APP_LOCAL_HOST}deleteBanner/${id}/${outlet_id}`)
       .then(() => {
         setValues(
           values.filter((val) => {
@@ -132,7 +133,7 @@ const Listbanner = () => {
                           <CTableDataCell>
                             {
                               <img
-                                src={baseUri + item.banner.image_path}
+                                src={`${REACT_APP_LOCAL_HOST}` + item.banner.image_path}
                                 className='rounded'
                                 height="40px"
                                 width="50px"

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+const {REACT_APP_LOCAL_HOST } = process.env
 // const imageInputRef = React.useRef()
 import {
   CButton,
@@ -40,7 +41,7 @@ function DrinkAdd() {
     formData.append('uploadfile', file)
 
     await axios
-      .post('http://localhost:7778/updatedrinkdata', formData)
+      .post(`${REACT_APP_LOCAL_HOST}updatedrinkdata`, formData)
       .then((res) => {
         console.log(res)
         alert('Food file Add successfully');
