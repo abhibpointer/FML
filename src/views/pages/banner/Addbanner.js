@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-const {REACT_APP_LOCAL_HOST } = process.env
+// const {REACT_APP_LOCAL_HOST } = process.env
 import { format } from 'date-fns'  
 import { useRef } from 'react'
 import './Addbanner.css'
@@ -19,7 +19,7 @@ import {
   CRow,
   CFormSelect,
 } from '@coreui/react'
-console.log(REACT_APP_LOCAL_HOST)
+
 function Addbanner() {
   const ref = useRef(null)
   const navigate = useNavigate()
@@ -131,7 +131,7 @@ function Addbanner() {
   // drop down
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`${REACT_APP_LOCAL_HOST}outletlist`).then((res) => {
+      await axios.get('http://35.154.86.71:7777/outletlist').then((res) => {
         // console.log(res.data.data)
         setOutletInfo(res.data.data)
       })
@@ -151,7 +151,7 @@ function Addbanner() {
     formData.append('fromdate', fromdate)
     formData.append('uploadfile', file)
 
-    const uri =`${REACT_APP_LOCAL_HOST}addBanner`
+    const uri ='http://35.154.86.71:7777/addBanner'
 
     axios
       .post(uri, formData)

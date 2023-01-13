@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
-const {REACT_APP_LOCAL_HOST } = process.env
+// const {REACT_APP_LOCAL_HOST } = process.env
 import {
   CAvatar,
   CButton,
@@ -27,7 +27,7 @@ import {
 const Listbanner = () => {
   // List show data
   const navigate = useNavigate()
- // const baseUri = `${REACT_APP_LOCAL_HOST}`
+  const baseUri = 'http://35.154.86.71:7777/'
   const [values, setValues] = useState([])
   const [message, setMessage] = useState('')
  // console.log(values)
@@ -35,7 +35,7 @@ const Listbanner = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get(`${REACT_APP_LOCAL_HOST}getBannerList`)
+        const result = await axios.get('http://35.154.86.71:7777/getBannerList')
         const response = result.data.data
          // console.log(response)
         const list = []
@@ -61,7 +61,7 @@ const Listbanner = () => {
   // Delete data start
   const toDelete = (id, outlet_id) => {
     axios
-      .delete(`${REACT_APP_LOCAL_HOST}deleteBanner/${id}/${outlet_id}`)
+      .delete(`http://35.154.86.71:7777/deleteBanner/${id}/${outlet_id}`)
       .then(() => {
         setValues(
           values.filter((val) => {
@@ -133,7 +133,7 @@ const Listbanner = () => {
                           <CTableDataCell>
                             {
                               <img
-                                src={`${REACT_APP_LOCAL_HOST}` + item.banner.image_path}
+                                src={baseUri + item.banner.image_path}
                                 className='rounded'
                                 height="40px"
                                 width="50px"
@@ -144,10 +144,10 @@ const Listbanner = () => {
                           <CTableDataCell>{item.banner.is_active}</CTableDataCell>
                           <CTableDataCell>{item.banner.is_fix}</CTableDataCell>
                           <CTableDataCell>
-                            {item.banner.is_fix == 0 ? date(item.banner.duration.todate) : '-'}
+                            {item.banner.is_fix == 0 ? date(item.banner.duration.fromdate) : '-'}
                           </CTableDataCell>
                           <CTableDataCell>
-                            {item.banner.is_fix == 0 ? date(item.banner.duration.fromdate) : '-'}
+                            {item.banner.is_fix == 0 ? date(item.banner.duration.todate) : '-'}
                           </CTableDataCell>
                           {/* <div> */}
                           <CTableDataCell>
