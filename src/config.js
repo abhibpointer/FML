@@ -1,0 +1,1 @@
+REACT_APP_LOCAL_HOST = 'http://35.154.86.71:7777/'
