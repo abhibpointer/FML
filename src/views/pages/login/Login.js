@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-const {REACT_APP_LOCAL_HOST } = process.env
+//const {REACT_APP_LOCAL_HOST_ADMIN} = process.env
 //import './style.css'
 
 import {
@@ -24,6 +24,7 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 
 const Login = () => {
   const navigator = useNavigate()
+ 
   const [userName, setUserName] = useState('')  
   const [password, setPassword] = useState('')
   const [userNameErr, setUserNameErr] = useState(false)
@@ -55,7 +56,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    axios.post(`${REACT_APP_LOCAL_HOST}login`, {
+    axios.post('http://35.154.86.71:7778/login', {
         userName: userName,
         password: password,
       })
