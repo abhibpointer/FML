@@ -16,59 +16,88 @@
 //   CTableRow,
 // } from '@coreui/react'
 
-
 // function Userlist() {
 //   const [userData, setUserData] = useState([])
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const [userPerPage] = useState(5)
+//      console.log(userData)
+//   const [value, setValue] = useState('')
+  
+//   const [currentPage, setCurrentPage] = useState(1)
+//   const [userPerPage] = useState(10)
 
-//    const indexOfLastRecord = currentPage * userPerPage;
-//    const indexOfFirstRecord = indexOfLastRecord - userPerPage
-   
-//    //display current record
-//    const currentRecords = userData.slice(indexOfFirstRecord, indexOfLastRecord)
-//    console.log(currentRecords)
-   
-//    const lastPages = Math.ceil(userData.length/userPerPage)
-//    console.log(lastPages)
+//   const pageVisited = currentPage * userPerPage
+ 
 
+//   //display current record
+//   const currentRecords = userData.slice(pageVisited, pageVisited + userPerPage).map((user)=>{
 
+//   })
 
-//   //console.log(userData)   
+//   const lastPages = Math.ceil(userData.length / userPerPage)
+//   console.log(lastPages)
+
+//   //console.log(userData)
 //   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const result = await axios.get('http://localhost:7778/getUsers')    
-//         setUserData(result.data.data.User)
-//       } catch (error) {
-//         console.log(error.message)
-//       }
-//     }
 //     fetchData()
 //   }, [])
 
-//   const handleSearch = (event) => {
-//     const search = event.target.value
-
-//     // console.log(search)
+//   const fetchData = async (page) => {
+//     try {
+//       const result = await axios.get(`http://localhost:7778/getUsers?page=${page}`)
+//       setUserData(result.data.data.User)
+//     } catch (error) {
+//       console.log(error.message)
+//     }
 //   }
-//  const handleSubmit = ()=>{
+ 
 
-//  }
+//   const handleSearch = async (e) => {
+//     e.preventDefault()
+//     return await axios
+//       .get(`http://localhost:7778/getUsers?search=${value}`)
+//       .then((res) => {setUserData(res.data.data.User)
+//         setValue('')
+//     }).catch((err)=> console.log(err.message))
+//   }
+
+//   const renderPagination=()=>{
+//     if(currentPage === 1){
+//         return(
+//             <nav aria-label="Page navigation example">
+//             <ul className="pagination justify-content-center">
+//               <li className="page-item disabled">
+//                 <a className="page-link" href="#" tabindex="-1">Previous</a>
+//               </li>
+//               <li className="page-item"><a className="page-link" href="#">1</a></li>
+//               <li className="page-item"><a className="page-link" href="#">2</a></li>
+//               <li className="page-item"><a className="page-link" href="#">3</a></li>
+//               <li className="page-item">
+//                 <a className="page-link" onClick={()=> fetchData(10)}>Next</a>
+//               </li>
+//             </ul>
+//           </nav>
+//         )
+//     }
+//   }
+
 
 //   return (
 //     <div className="mt-4">
 //       <h2 className="text-center">User List</h2>
 //       <div className="row mt-4">
-//         <div className='col-md-7'></div>
+//         <div className="col-md-7"></div>
 //         <div className="col-md-4">
-//             <input type='search' className='form-control'
-//             placeholder='Enter...'
-//             onChange={handleSearch}
-//             />
+//           <input
+//             type="search"
+//             className="form-control"
+//             placeholder="Enter..."
+//             value={value}
+//             onChange={(e) => setValue(e.target.value)}
+//           />
 //         </div>
-//         <div className='col-md-1'>
-//            <button className='btn btn-info'onClick={handleSubmit}> Search</button>
+//         <div className="col-md-1">
+//           <button className="btn btn-info" onClick={handleSearch}>
+//             Search
+//           </button>
 //         </div>
 //       </div>
 //       <div>
@@ -88,25 +117,33 @@
 //                       <CTableHeaderCell>Source</CTableHeaderCell>
 //                       {/* <CTableHeaderCell>Deleted</CTableHeaderCell> */}
 //                     </CTableRow>
-//                     </CTableHead>
-//                     <CTableBody>
-//                     {   
-//                         currentRecords ? currentRecords.map((user, index)=>(
-//                             <CTableRow key={index} className='text-center'>
-//                             <CTableDataCell>{index+1}</CTableDataCell>
-//                             <CTableDataCell>{user.userId}</CTableDataCell>
-//                             <CTableDataCell>{user.name}</CTableDataCell>
-//                             <CTableDataCell>{user.phoneNumber ? user.phoneNumber:'-'}</CTableDataCell>
-//                             <CTableDataCell>{user.otp ? user.otp : '-'}</CTableDataCell>   
-//                             <CTableDataCell>{user.birthdate ? user.birthdate : '-'}</CTableDataCell>
-//                             <CTableDataCell>{user.userAgent ? user.userAgent : '-'}</CTableDataCell>
-//                             </CTableRow>
-//                         )):null
-//                     }      
+//                   </CTableHead>
+//                   <CTableBody>
+//                     {userData.length === 0 ? (
+//                       <CTableBody className="align-center mb-0">
+//                         <CTableRow>
+//                           <CTableDataCell colSpan={8} className="text-center mb-0"> NO Data Found</CTableDataCell>
+//                         </CTableRow>
+//                       </CTableBody>
+//                     ) : (
+//                       userData.map((user, index) => (
+//                         <CTableRow key={index} className="text-center">
+//                           <CTableDataCell>{index + 1}</CTableDataCell>
+//                           <CTableDataCell>{user.userId}</CTableDataCell>
+//                           <CTableDataCell>{user.name}</CTableDataCell>
+//                           <CTableDataCell>
+//                             {user.phoneNumber ? user.phoneNumber : '-'}
+//                           </CTableDataCell>
+//                           <CTableDataCell>{user.otp ? user.otp : '-'}</CTableDataCell>
+//                           <CTableDataCell>{user.birthdate ? user.birthdate : '-'}</CTableDataCell>
+//                           <CTableDataCell>{user.userAgent ? user.userAgent : '-'}</CTableDataCell>
+//                         </CTableRow>
+//                       ))
+//                     )}
 //                   </CTableBody>
 //                 </CTable>
 //                 <br />
-//                 <div className='d'>Pagination</div>
+//                 <div style={{margin:'auto', padding:'15px', maxWidth:'200px', alignContent:'center'}}>{renderPagination()}</div>
 //               </CCardBody>
 //             </CCard>
 //           </CCol>

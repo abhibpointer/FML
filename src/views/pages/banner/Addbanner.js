@@ -19,7 +19,7 @@ import {
   CRow,
   CFormSelect,
 } from '@coreui/react'
-
+console.log(REACT_APP_LOCAL_HOST)
 function Addbanner() {
   const ref = useRef(null)
   const navigate = useNavigate()
@@ -246,7 +246,6 @@ function Addbanner() {
                         <input
                           type="date"
                           className="form-control"
-                          min={new Date()}
                           max={todate}
                           name="fromDate"
                           onChange={handleFromdate}
@@ -257,7 +256,7 @@ function Addbanner() {
                         <input
                           type="date"
                           className="form-control"
-                          format='yyyy/mm/dd'
+                          // format='yyyy/mm/dd'
                           placeholder="Enter date"
                           min={fromdate}
                           name="todate"

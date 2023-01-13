@@ -116,8 +116,8 @@ const Listbanner = () => {
                     <CTableHeaderCell>Outlet Id</CTableHeaderCell>
                     <CTableHeaderCell className="text-center">Banner Title</CTableHeaderCell>
                     <CTableHeaderCell className="image">Image</CTableHeaderCell>
-                    <CTableHeaderCell>Is Active</CTableHeaderCell>
-                    <CTableHeaderCell>Is Fix</CTableHeaderCell>
+                    <CTableHeaderCell>Active</CTableHeaderCell>
+                    <CTableHeaderCell> Fix</CTableHeaderCell>
                     <CTableHeaderCell>From Date</CTableHeaderCell>
                     <CTableHeaderCell>To Date</CTableHeaderCell>
                     <CTableHeaderCell>Action</CTableHeaderCell>
