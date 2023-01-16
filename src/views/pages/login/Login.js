@@ -67,7 +67,7 @@ const Login = () => {
           localStorage.clear()
           //localStorage.setItem('auth_token', key) 
            localStorage.setItem("auth_token", JSON.stringify(key))
-          navigator("/dashboard")
+          navigator("/pages/banner/Listbanner")
           
         }
       })
