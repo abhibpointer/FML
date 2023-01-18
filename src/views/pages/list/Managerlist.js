@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-const {REACT_APP_LOCAL_HOST } = process.env
+const {REACT_APP_LOCAL_HOST} = process.env
 import {
   CAvatar,
   CCard,
@@ -20,6 +20,7 @@ import { cilPeople } from '@coreui/icons'
 import avatar8 from './../../../assets/images/avatars/8.jpg'
 
 function Managerlist() {
+  console.log(REACT_APP_LOCAL_HOST)
   const [values, setValues] = useState('')
   const [list, setList] = useState('')
   const [outletInfo, setOutletInfo] = useState('')

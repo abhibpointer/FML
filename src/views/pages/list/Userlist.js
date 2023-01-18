@@ -27,13 +27,9 @@ function Userlist() {
 
 
   const lastPage = currentPage * userPerPage
-  console.log(lastPage)
 
-  const firstPage = lastPage - userPerPage
-  console.log(firstPage)
-
-  // const pageCount =  Math.ceil(userData.length/userPerPage)
-  // console.log(pageCount)
+  // const firstPage = lastPage - userPerPage
+ // console.log(firstPage)
 
   //uri = 
 
@@ -65,6 +61,7 @@ function Userlist() {
   const handlePageClick = (val) => {
     setCurrentPage(val.selected)
   }
+  
   return (
     <div className="mt-4">
       <h2 className="text-center">User List</h2>
@@ -117,13 +114,8 @@ function Userlist() {
                         {/* index*PageNum index + 1 * lastPage + 1 */}
                         <CTableDataCell>{user.userId ? user.userId : '-'}</CTableDataCell>
                         <CTableDataCell>{user.name ? user.name : '-'}</CTableDataCell>
-                        <CTableDataCell>
-                          {' '}
-                          {user.phoneNumber == ' ' ||
-                          user.phoneNumber == '' ||
-                          user.phoneNumber == null
-                            ? '-'
-                            : user.phoneNumber}{' '}
+                        <CTableDataCell>{
+                        user.phoneNumber == ' ' || user.phoneNumber == '' || user.phoneNumber == null ? '-' : user.phoneNumber}
                         </CTableDataCell>
                         <CTableDataCell>{user.otp ? user.otp : '-'}</CTableDataCell>
                         <CTableDataCell>{user.birthdate ? user.birthdate : '-'}</CTableDataCell>
@@ -135,8 +127,8 @@ function Userlist() {
               </CTable>
               <br />
               <ReactPaginate
-                previousLabel={'previous'}
-                nextLabel={'next'}
+                previousLabel={'<<'}
+                nextLabel={'>>'}
                 breakLabel={'...'}
                 pageCount={pageCount}
                 marginPagesDisplayed={2}

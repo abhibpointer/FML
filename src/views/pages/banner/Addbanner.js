@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-// const {REACT_APP_LOCAL_HOST } = process.env
+ const {REACT_APP_LOCAL_HOST } = process.env
 import { format } from 'date-fns'  
 import { useRef } from 'react'
 import './Addbanner.css'
@@ -19,7 +19,7 @@ import {
   CRow,
   CFormSelect,
 } from '@coreui/react'
-
+console.log(REACT_APP_LOCAL_HOST)
 function Addbanner() {
   const ref = useRef(null)
   const navigate = useNavigate()
