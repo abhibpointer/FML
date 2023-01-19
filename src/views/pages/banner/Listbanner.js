@@ -80,8 +80,8 @@ const Listbanner = () => {
 
   //Navigate to Edit page
   const handleProcess = (id) => {
-    console.log(id)
-    navigate(`/pages/banner/Editbanner/${id}`)
+    //console.log(id)
+    navigate(`/editbanner/${id}`)
   }
 
   //Date converter
@@ -93,7 +93,7 @@ const Listbanner = () => {
     <>
       <br />
       <div className="flex-right">
-        <Link to="/pages/banner/Addbanner">
+        <Link to="/addbanner">
           <button
             className="btn btn-primary btn-lg"
            // style={{ display: 'flex', justifyContent: 'flex-end ' }}

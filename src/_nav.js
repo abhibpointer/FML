@@ -52,29 +52,29 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Banners',
-    to: '/pages/banner/Listbanner',
+    to: '/bannerlist',
     //  icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
    component: CNavItem,
    name:'Manager list',
-   to:'/pages/list/Managerlist'
+   to:'/managerlist'
   },
-  {
-   component:CNavItem,
-   name:'User list',
-   to:'/pages/list/Userlist'
-  },
+  // {
+  //  component:CNavItem,
+  //  name:'User list',
+  //  to:'/userlist'
+  // },
   {
    component:CNavItem,
    name:'Add food excel',
-   to:'/pages/food'
+   to:'/addfood'
   },
 
   {
     component:CNavItem,
     name:'Add drink excel',
-    to:'/pages/drink'
+    to:'/adddrink'
    },
   // {
   //   component: CNavTitle,

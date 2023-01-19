@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
- const {REACT_APP_LOCAL_HOST } = process.env
-import { format } from 'date-fns'  
+const { REACT_APP_LOCAL_HOST } = process.env
+import { format } from 'date-fns'
 import { useRef } from 'react'
 import './Addbanner.css'
 import { useNavigate } from 'react-router-dom'
@@ -19,19 +19,18 @@ import {
   CRow,
   CFormSelect,
 } from '@coreui/react'
-console.log(REACT_APP_LOCAL_HOST)
+// console.log(REACT_APP_LOCAL_HOST)
 function Addbanner() {
   const ref = useRef(null)
   const navigate = useNavigate()
   const [title, setTitle] = useState('')
   const [outletid, setOutletId] = useState('')
-   const [active, setActive] = useState(1)
+  const [active, setActive] = useState(1)
   const [fix, setFix] = useState('')
   const [todate, setToDate] = useState('')
   const [fromdate, setFromDate] = useState('')
   const [file, setFile] = useState(null)
   // const [message, setMessage] = useState('')
- 
 
   //Drop down state
   const [ouletInfo, setOutletInfo] = useState('')
@@ -76,7 +75,6 @@ function Addbanner() {
   //   }
   //   setActive(active)
   // }
- 
 
   const handleFix = (e) => {
     let fix = e.target.value
@@ -124,7 +122,7 @@ function Addbanner() {
       setFile(file)
     } else {
       alert('Please enter valid formate file')
-      window.location.reload();
+      window.location.reload()
     }
   }
 
@@ -151,7 +149,7 @@ function Addbanner() {
     formData.append('fromdate', fromdate)
     formData.append('uploadfile', file)
 
-    const uri ='http://35.154.86.71:7777/addBanner'
+    const uri = 'http://35.154.86.71:7777/addBanner'
 
     axios
       .post(uri, formData)
@@ -160,7 +158,7 @@ function Addbanner() {
         alert('Successfully banner data added')
         window.location.reload()
         //need to improve on redirection
-        navigate('/pages/banner/Listbanner')
+        navigate('/bannerlist')
       })
       .catch(() => {
         setMessageErr('Please enter above information')
@@ -176,7 +174,7 @@ function Addbanner() {
               <CCardBody className="p-4">
                 <CForm className="row g-3">
                   <h2 className="text-center bg-light">Add Banner</h2>
-                
+
                   {/* <p className="text-medium-emphasis text-center">{message}</p> */}
                   <div className="col-md-12">
                     <label className="form-label">Banner Title :</label>
@@ -192,11 +190,7 @@ function Addbanner() {
 
                   <div className="col-md-12">
                     <label className="form-label">Oulet :</label>
-                    <CFormSelect
-                      className="text-left"
-                      value={outletid}
-                      onChange={handleOutletId}
-                    >
+                    <CFormSelect className="text-left" value={outletid} onChange={handleOutletId}>
                       <option>Select Outlet</option>
                       {ouletInfo
                         ? ouletInfo.map((item, index) => (
@@ -210,7 +204,7 @@ function Addbanner() {
                   {outletidErr && <p style={{ color: 'red' }}>{outletidErr}</p>}
                   <br />
 
-                   {/* <div className="col-mb-6">
+                  {/* <div className="col-mb-6">
                     <label className='form-label'>Active:</label>
                     <input
                       type="text"
@@ -224,13 +218,11 @@ function Addbanner() {
                   {activeErr && <p style={{ color: 'red' }}>{activeErr}</p>}  */}
 
                   <div className="col-md-12">
-                    <label className="form-label">
-                      Fix :
-                    </label>
+                    <label className="form-label">Fix :</label>
                     <input
-                         type="Number"
-                         min='0'
-                         max='1'
+                      type="Number"
+                      min="0"
+                      max="1"
                       className="form-control"
                       placeholder="Enter fix"
                       name="is_fix"
@@ -241,7 +233,7 @@ function Addbanner() {
                   {fixErr && <p style={{ color: 'red' }}>{fixErr}</p>}
                   {fix == '0' ? (
                     <div className="row g-3">
-                          <div className="col-md-6">
+                      <div className="col-md-6">
                         <label className="form-label"> From Date:</label>
                         <input
                           type="date"
@@ -252,7 +244,7 @@ function Addbanner() {
                         />
                       </div>
                       <div className="col-md-6">
-                      <label className="form-label"> To Date :</label>
+                        <label className="form-label"> To Date :</label>
                         <input
                           type="date"
                           className="form-control"
@@ -265,8 +257,8 @@ function Addbanner() {
                       </div>
                     </div>
                   ) : null}
-                      <div className="mb-3 mt-3">
-                  <label className="form-label">File Upload :</label>
+                  <div className="mb-3 mt-3">
+                    <label className="form-label">File Upload :</label>
                     <input
                       type="file"
                       className="form-control"

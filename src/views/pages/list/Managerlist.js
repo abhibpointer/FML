@@ -20,13 +20,12 @@ import { cilPeople } from '@coreui/icons'
 import avatar8 from './../../../assets/images/avatars/8.jpg'
 
 function Managerlist() {
-  console.log(REACT_APP_LOCAL_HOST)
   const [values, setValues] = useState('')
   const [list, setList] = useState('')
   const [outletInfo, setOutletInfo] = useState('')
   const [messageErr, setMessageErr] = useState('')
-  console.log(list)
-  //console.log(values)
+ 
+ 
 
 
   useEffect(() => {
@@ -37,11 +36,20 @@ function Managerlist() {
     fetchData()
   }, [])
 
+  useEffect(()=>{
+    const data = async () =>{
+      const result = await axios.get(`${REACT_APP_LOCAL_HOST}managerlist?accessType=manager`)
+      setList(result.data.data)
+    }
+    data()
+  },[])
+
+
   const handleSubmit = async (event) => {
     event.preventDefault()
 
     let useMe = values == 'manager' ? `accessType=${values}` : `outletId=${values}`
-
+     console.log(useMe)
     const uri = `${REACT_APP_LOCAL_HOST}managerlist?` + useMe
     await axios.get(uri)
       .then((res) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-// const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
@@ -50,82 +50,87 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
-//Banner CURD
+//Banner
 const Banneradd = React.lazy(()=> import('./views/pages/banner/Addbanner'))
 const Banneredit = React.lazy(()=> import('./views/pages/banner/Editbanner'))
 const Bannerlist = React.lazy(()=> import('./views/pages/banner/Listbanner'))
+//Manager list
 const Managerlist = React.lazy(()=> import('./views/pages/list/Managerlist'))
+//UserList
 const Userlist = React.lazy(()=> import('./views/pages/list/Userlist'))
-
+//Add Food Excel
 const FoodAdd = React.lazy(()=> import('./views/pages/food/FoodAdd'))
+//Add Drink Excel
 const DrinkAdd = React.lazy(()=> import('./views/pages/drink/DrinkAdd'))
 
-const ProtectedRoute =React.lazy(()=> import('./util/ProtectedRoutes'))
-const routes = [
-  { path: '/', exact: true, name: 'Home' },
-  // { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-  { path: '/theme', name: 'Theme', element: Colors, exact: true },
-  { path: '/theme/colors', name: 'Colors', element: Colors },
-  { path: '/theme/typography', name: 'Typography', element: Typography },
-  { path: '/base', name: 'Base', element: Cards, exact: true },
-  { path: '/base/accordion', name: 'Accordion', element: Accordion },
-  { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },
-  { path: '/base/cards', name: 'Cards', element: Cards },
-  { path: '/base/carousels', name: 'Carousel', element: Carousels },
-  { path: '/base/collapses', name: 'Collapse', element: Collapses },
-  { path: '/base/list-groups', name: 'List Groups', element: ListGroups },
-  { path: '/base/navs', name: 'Navs', element: Navs },
-  { path: '/base/paginations', name: 'Paginations', element: Paginations },
-  { path: '/base/placeholders', name: 'Placeholders', element: Placeholders },
-  { path: '/base/popovers', name: 'Popovers', element: Popovers },
-  { path: '/base/progress', name: 'Progress', element: Progress },
-  { path: '/base/spinners', name: 'Spinners', element: Spinners },
-  { path: '/base/tables', name: 'Tables', element: Tables },
-  { path: '/base/tooltips', name: 'Tooltips', element: Tooltips },
-  { path: '/buttons', name: 'Buttons', element: Buttons, exact: true },
-  { path: '/buttons/buttons', name: 'Buttons', element: Buttons },
-  { path: '/buttons/dropdowns', name: 'Dropdowns', element: Dropdowns },
-  { path: '/buttons/button-groups', name: 'Button Groups', element: ButtonGroups },
-  { path: '/charts', name: 'Charts', element: Charts },
-  { path: '/forms', name: 'Forms', element: FormControl, exact: true },
-  { path: '/forms/form-control', name: 'Form Control', element: FormControl },
-  { path: '/forms/select', name: 'Select', element: Select },
-  { path: '/forms/checks-radios', name: 'Checks & Radios', element: ChecksRadios },
-  { path: '/forms/range', name: 'Range', element: Range },
-  { path: '/forms/input-group', name: 'Input Group', element: InputGroup },
-  { path: '/forms/floating-labels', name: 'Floating Labels', element: FloatingLabels },
-  { path: '/forms/layout', name: 'Layout', element: Layout },
-  { path: '/forms/validation', name: 'Validation', element: Validation },
-  { path: '/icons', exact: true, name: 'Icons', element: CoreUIIcons },
-  { path: '/icons/coreui-icons', name: 'CoreUI Icons', element: CoreUIIcons },
-  { path: '/icons/flags', name: 'Flags', element: Flags },
-  { path: '/icons/brands', name: 'Brands', element: Brands },
-  { path: '/notifications', name: 'Notifications', element: Alerts, exact: true },
-  { path: '/notifications/alerts', name: 'Alerts', element: Alerts },
-  { path: '/notifications/badges', name: 'Badges', element: Badges },
-  { path: '/notifications/modals', name: 'Modals', element: Modals },
-  { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
-  { path: '/widgets', name: 'Widgets', element: Widgets },
+const ProtectedRoutes =React.lazy(()=> import('./util/ProtectedRoutes'))
+
+ 
+  const routes =[
+
+    { path: '/bannerlist', exact: true, name: 'Home' },
+    { path: '/dashboard', name: 'Dashboard', element:Dashboard },
+    { path: '/theme', name: 'Theme', element: Colors, exact: true },
+    { path: '/theme/colors', name: 'Colors', element: Colors },
+    { path: '/theme/typography', name: 'Typography', element: Typography },
+    { path: '/base', name: 'Base', element: Cards, exact: true },
+    { path: '/base/accordion', name: 'Accordion', element: Accordion },
+    { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },
+    { path: '/base/cards', name: 'Cards', element: Cards },
+    { path: '/base/carousels', name: 'Carousel', element: Carousels },
+    { path: '/base/collapses', name: 'Collapse', element: Collapses },
+    { path: '/base/list-groups', name: 'List Groups', element: ListGroups },
+    { path: '/base/navs', name: 'Navs', element: Navs },
+    { path: '/base/paginations', name: 'Paginations', element: Paginations },
+    { path: '/base/placeholders', name: 'Placeholders', element: Placeholders },
+    { path: '/base/popovers', name: 'Popovers', element: Popovers },
+    { path: '/base/progress', name: 'Progress', element: Progress },
+    { path: '/base/spinners', name: 'Spinners', element: Spinners },
+    { path: '/base/tables', name: 'Tables', element: Tables },
+    { path: '/base/tooltips', name: 'Tooltips', element: Tooltips },
+    { path: '/buttons', name: 'Buttons', element: Buttons, exact: true },
+    { path: '/buttons/buttons', name: 'Buttons', element: Buttons },
+    { path: '/buttons/dropdowns', name: 'Dropdowns', element: Dropdowns },
+    { path: '/buttons/button-groups', name: 'Button Groups', element: ButtonGroups },
+    { path: '/charts', name: 'Charts', element: Charts },
+    { path: '/forms', name: 'Forms', element: FormControl, exact: true },
+    { path: '/forms/form-control', name: 'Form Control', element: FormControl },
+    { path: '/forms/select', name: 'Select', element: Select },
+    { path: '/forms/checks-radios', name: 'Checks & Radios', element: ChecksRadios },
+    { path: '/forms/range', name: 'Range', element: Range },
+    { path: '/forms/input-group', name: 'Input Group', element: InputGroup },
+    { path: '/forms/floating-labels', name: 'Floating Labels', element: FloatingLabels },
+    { path: '/forms/layout', name: 'Layout', element: Layout },
+    { path: '/forms/validation', name: 'Validation', element: Validation },
+    { path: '/icons', exact: true, name: 'Icons', element: CoreUIIcons },
+    { path: '/icons/coreui-icons', name: 'CoreUI Icons', element: CoreUIIcons },
+    { path: '/icons/flags', name: 'Flags', element: Flags },
+    { path: '/icons/brands', name: 'Brands', element: Brands },
+    { path: '/notifications', name: 'Notifications', element: Alerts, exact: true },
+    { path: '/notifications/alerts', name: 'Alerts', element: Alerts },
+    { path: '/notifications/badges', name: 'Badges', element: Badges },
+    { path: '/notifications/modals', name: 'Modals', element: Modals },
+    { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
+    { path: '/widgets', name: 'Widgets', element: Widgets },
+    
+    //Banner opration Routes
+    {path: '/addbanner', name:'Add', element:Banneradd},
+    {path: '/editbanner/:id', name:'Edit', element:Banneredit},
+    {path: '/bannerlist', name:'Banners', element:Bannerlist},
   
-  //Banner opration Routes
-  {path: '/pages/banner/Addbanner', name:'Add', element:Banneradd},
-  {path: '/pages/banner/Editbanner/:id', name:'Edit', element:Banneredit},
-  {path: '/pages/banner/Listbanner', name:'Banners', element:Bannerlist},
+    //Manager List Route
+    {path: '/managerlist', name:'Manager list', element:Managerlist},
+  
+    // // User List Route
+    // {path:'/userlist', name:"User list", element:Userlist},
+  
+    //Food 
+    {path: '/addfood', name:'Add food excel', element:FoodAdd},
+  
+    //Drink
+    {path:'/adddrink', name:'Add drink excel', element:DrinkAdd},
+  
+  ]
 
-  //Manager List Route
-  {path: '/pages/list/Managerlist', name:'Manager list', element:Managerlist},
-
-  // User List Route
-  {path:'/pages/list/Userlist', name:"User list", element:Userlist},
-
-  //Food 
-  {path: '/pages/food', name:'Add food excel', element:FoodAdd},
-
-  //Drink
-  {path:'/pages/drink', name:'Add food excel', element:DrinkAdd},
-
-  //Private Routes  
-  {path:'/util', name:'private', element:ProtectedRoute}
-]
 
 export default routes

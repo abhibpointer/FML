@@ -4,16 +4,18 @@ import { CContainer, CSpinner } from '@coreui/react'
 
 // routes config
 import routes from '../routes'
+import ProtectedRoutes from 'src/util/ProtectedRoutes'
 
 const AppContent = () => {
   return (
     <CContainer lg>
       <Suspense fallback={<CSpinner color="primary" />}>
         <Routes>
+          <Route element={<ProtectedRoutes />}>
           {routes.map((route, idx) => {
             return (
               route.element && (
-                <Route
+                <Route 
                   key={idx}
                   path={route.path}
                   exact={route.exact}
@@ -23,7 +25,8 @@ const AppContent = () => {
               )
             )
           })}
-          <Route path="/" element={<Navigate to="dashboard" replace />} />
+          {/* <Route path="/" element={<Navigate to="dashboard" replace />} /> */}
+          </Route> 
         </Routes>
       </Suspense>
     </CContainer>

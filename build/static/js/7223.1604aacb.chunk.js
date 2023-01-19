@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunk_coreui_coreui_free_react_admin_template=self.webpackChunk_coreui_coreui_free_react_admin_template||[]).push([[7223],{47223:function(e,t,n){n.r(t);var o=n(70885),u=n(72791),c=n(57689),a=n(80184);t.default=function(){var e=(0,u.useState)(""),t=(0,o.Z)(e,2),n=t[0],r=t[1];return console.log(n),(0,u.useEffect)((function(){!function(){var e=localStorage.getItem("auth_token");console.log(e),e&&"undefined"!==e||r(!1),r(!0)}()}),[n]),n?(0,a.jsx)(c.j3,{}):(0,a.jsx)(c.Fg,{to:"/login"})}}}]);
-//# sourceMappingURL=7223.1604aacb.chunk.js.map
