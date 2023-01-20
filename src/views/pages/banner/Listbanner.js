@@ -27,7 +27,7 @@ import {
 const Listbanner = () => {
   // List show data
   const navigate = useNavigate()
-  const baseUri = 'http://35.154.86.71:7777/'
+  const baseUri = 'http://35.154.86.71:7777'
   const [values, setValues] = useState([])
   const [message, setMessage] = useState('')
  // console.log(values)

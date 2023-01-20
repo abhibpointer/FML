@@ -7,7 +7,7 @@ const lazyRetry = function(componentImport) {
       const hasRefreshed = JSON.parse(
           window.sessionStorage.getItem('retry-lazy-refreshed') || 'false'
       );
-      
+      console.log(hasRefreshed)
       componentImport().then((component) => {
           window.sessionStorage.setItem('retry-lazy-refreshed', 'false');
           resolve(component);
