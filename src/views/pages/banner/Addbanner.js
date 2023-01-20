@@ -19,6 +19,7 @@ import {
   CRow,
   CFormSelect,
 } from '@coreui/react'
+
 // console.log(REACT_APP_LOCAL_HOST)
 function Addbanner() {
   const ref = useRef(null)
@@ -78,10 +79,13 @@ function Addbanner() {
 
   const handleFix = (e) => {
     let fix = e.target.value
-    let re = /[0-1]/g
-    if (!re.test(fix) || fix.trim() == null) {
+  
+    if (/[^01]/.test(fix)) {
       setFixErr('Enter number must be 0 and 1')
-    } else {
+    } else if(fix.length > 1){
+       setFixErr("Enter number must be 0 and 1")
+    }
+    else {
       setFixErr(false), setFixErr('')
     }
     setFix(fix)
@@ -165,6 +169,7 @@ function Addbanner() {
       })
   }
 
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -223,6 +228,7 @@ function Addbanner() {
                       type="Number"
                       min="0"
                       max="1"
+                      maxLength="1"
                       className="form-control"
                       placeholder="Enter fix"
                       name="is_fix"

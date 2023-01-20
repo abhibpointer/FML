@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate'
-//  const {REACT_APP_LOCAL_HOST_ADMIN} = process.env
+const {REACT_APP_ADMIN} = process.env
 import {
   CAvatar,
   CCard,
@@ -16,7 +16,7 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-
+console.log(REACT_APP_ADMIN)
 function Userlist() {
   const [userData, setUserData] = useState([])
 

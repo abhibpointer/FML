@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 // const {REACT_APP_LOCAL_HOST } = process.env
-// const imageInputRef = React.useRef()
+
 import {
   CButton,
   CCard,
