@@ -25,8 +25,6 @@ function Managerlist() {
   const [outletInfo, setOutletInfo] = useState('')
   const [messageErr, setMessageErr] = useState('')
  
- 
-
 
   useEffect(() => {
   const fetchData = async () => {

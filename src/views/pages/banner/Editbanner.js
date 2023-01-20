@@ -28,9 +28,9 @@ function Editbanner() {
   const [banner_title, setTitle] = useState('')
 
   const [outlet_id, setOutletId] = useState('')
+  //console.log(outlet_id)
   const [is_active, setActive] = useState('')
   const [is_fix, setFix] = useState('')
-  console.log(is_fix)
   const [todate, setToDate] = useState('')
   const [fromdate, setFromDate] = useState('')
   const [file, setFile] = useState('')
@@ -39,9 +39,6 @@ function Editbanner() {
   const [messageErr, setMessageErr] = useState('')
   //Dropdown oulet data
   const [outletInfo, setOuletInfo] = useState([])
-
-  // Error
-  const [isFixError, setIsFixError] = useState(false)
     // const preFile = getFile.split('/')[1]
     // console.log(preFile)
 
@@ -83,29 +80,7 @@ function Editbanner() {
         setOutletId(items.outlet_id)
         setTitle(item.banner_title)
         setActive(item.is_active)
-
-        // if(/[^01]/.test(item.is_fix)){
-        //   setIsFixError("please enter value between 0 and 1")
-        // }else if(item.is_fix.length <=1){
-        //   setIsFixError("please enter only one value")
-        // }else{
-        //   setIsFixError(false),setIsFixError('')
-        // }
-
-        const handleFix = (fix) => {
-          if (/[^01]/.test(fix)) {
-            setIsFixError('Enter number must be 0 and 1')
-          }
-           if(fix.length > 1){
-            setIsFixError("Enter number must be 0 and 1")
-          }
-          else {
-            setIsFixError(false), setIsFixError('')
-          }
-          setFix(fix)
-        }
-        handleFix(item.is_fix)
-
+        setFix(item.is_fix)
         setGetFile(item.image_path)
 
         const date = (date) => {
@@ -136,8 +111,7 @@ function Editbanner() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    
-  
+ 
     const formData = new FormData()
     formData.append('outlet_id', outlet_id)
     formData.append('banner_title', banner_title)
@@ -169,15 +143,6 @@ function Editbanner() {
                 <CForm className="row g-3">
                   <h2 className="text-center bg-light">Edit Banner</h2>
                   {/* <p className="text-medium-emphasis text-center">{message}</p> */}
-                  {/* <CInputGroup className="mb-3">
-                    <CInputGroupText>Banner Title:</CInputGroupText>
-                    <CFormInput
-                      placeholder="Enter Title"
-                      name="banner_title"
-                      value={banner_title}
-                      onChange={(e) => setTitle(e.target.value)}
-                    />
-                  </CInputGroup> */}
                   <div className="col-md-12">
                     <label className="form-label">Banner Title :</label>
                     <input
@@ -214,7 +179,6 @@ function Editbanner() {
                       min='0'
                       max='1'
                       maxLength='1'
-                      disabled
                       className="form-control"
                       placeholder="Enter active"
                       name="is_active"
@@ -237,18 +201,7 @@ function Editbanner() {
                       value={is_fix}
                       onChange={(e) => setFix(e.target.value)}
                     />
-                     {isFixError && <p style={{ color: 'red' }}>{isFixError}</p>}
                   </div>
-                 
-                  {/* <CInputGroup className="mb-3">
-                    <CInputGroupText>Active:</CInputGroupText>
-                    <CFormInput
-                      placeholder="Enter active"
-                      name="is_active"
-                      value={is_active}
-                      onChange={(e) => setActive(e.target.value)}
-                    />
-                  </CInputGroup> */}
                   {is_fix == '0' ? (
                     <div className="row g-3">
                       <div className="col-md-6">

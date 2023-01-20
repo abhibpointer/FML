@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunk_coreui_coreui_free_react_admin_template=self.webpackChunk_coreui_coreui_free_react_admin_template||[]).push([[7223],{47223:function(e,t,r){r.r(t);r(72791);var a=r(57689),u=r(80184);t.default=function(){return localStorage.getItem("auth_token")?(0,u.jsx)(a.j3,{}):(0,u.jsx)(a.Fg,{to:"/login"})}}}]);
+//# sourceMappingURL=7223.337ec42f.chunk.js.map

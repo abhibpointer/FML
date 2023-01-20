@@ -118,8 +118,8 @@ const DrinkAdd = React.lazy(()=> import('./views/pages/drink/DrinkAdd'))
     //Manager List Route
     {path: '/managerlist', name:'Manager list', element:Managerlist},
   
-    // // User List Route
-    // {path:'/userlist', name:"User list", element:Userlist},
+    // // // User List Route
+    //  {path:'/userlist', name:"User list", element:Userlist},
   
     //Food 
     {path: '/addfood', name:'Add food excel', element:FoodAdd},

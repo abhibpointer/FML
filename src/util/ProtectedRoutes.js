@@ -24,7 +24,7 @@ import {useState, useEffect} from 'react'
 
   function ProtectedRoutes() {
     const isAuthenticated = localStorage.getItem("auth_token");
-    console.log("this", isAuthenticated);
+   // console.log("this", isAuthenticated);
     
     return (
       
