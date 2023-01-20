@@ -28,7 +28,7 @@ function Managerlist() {
 
   useEffect(() => {
   const fetchData = async () => {
-    const getData = await axios.get(`${REACT_APP_LOCAL_HOST}outletlist`)
+    const getData = await axios.get(`${REACT_APP_LOCAL_HOST}/outletlist`)
     setOutletInfo(getData.data.data)
   }
     fetchData()
@@ -36,7 +36,7 @@ function Managerlist() {
 
   useEffect(()=>{
     const data = async () =>{
-      const result = await axios.get(`${REACT_APP_LOCAL_HOST}managerlist?accessType=manager`)
+      const result = await axios.get(`${REACT_APP_LOCAL_HOST}/managerlist?accessType=manager`)
       setList(result.data.data)
     }
     data()
@@ -46,9 +46,9 @@ function Managerlist() {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    let useMe = values == 'manager' ? `accessType=${values}` : `outletId=${values}`
+    let useMe = values == 'manager' ? `accessType=${values}` : `outletId=${values}`;
      console.log(useMe)
-    const uri = `${REACT_APP_LOCAL_HOST}managerlist?` + useMe
+    const uri =`${REACT_APP_LOCAL_HOST}/managerlist?`+useMe;
     await axios.get(uri)
       .then((res) => {
         setList(res.data.data)
