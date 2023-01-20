@@ -1,5 +1,27 @@
 import React from 'react'
 
+
+const lazyRetry = function(componentImport) {
+  return new Promise((resolve, reject) => {
+    
+      const hasRefreshed = JSON.parse(
+          window.sessionStorage.getItem('retry-lazy-refreshed') || 'false'
+      );
+      
+      componentImport().then((component) => {
+          window.sessionStorage.setItem('retry-lazy-refreshed', 'false');
+          resolve(component);
+      }).catch((error) => {
+          if (!hasRefreshed) { 
+              window.sessionStorage.setItem('retry-lazy-refreshed', 'true'); 
+              return window.location.reload(); 
+          }
+          reject(error); // Default error behaviour as already tried refresh
+      });
+  });
+};
+
+
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
@@ -52,7 +74,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 //Banner
 const Banneradd = React.lazy(()=> import('./views/pages/banner/Addbanner'))
-const Banneredit = React.lazy(()=> import('./views/pages/banner/Editbanner'))
+const Banneredit = React.lazy(()=> lazyRetry(()=> import('./views/pages/banner/Editbanner')))
 const Bannerlist = React.lazy(()=> import('./views/pages/banner/Listbanner'))
 //Manager list
 const Managerlist = React.lazy(()=> import('./views/pages/list/Managerlist'))
