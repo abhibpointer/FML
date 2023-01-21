@@ -28,20 +28,23 @@ const Listbanner = () => {
   // List show data
   const navigate = useNavigate()
   const baseUri = 'http://35.154.86.71:7777'
-  const [values, setValues] = useState([])
+  const [values, setValues] = useState([]);
   const [message, setMessage] = useState('')
- // console.log(values)
+ 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await axios.get('http://35.154.86.71:7777/getBannerList')
         const response = result.data.data
-         // console.log(response)
-        const list = []
 
+        const res = await axios.get('http://35.154.86.71:7777/outletlist')
+        const outletNa =res.data.data
+
+        const list = []
         for (let i = 0; i < response.length; i++) {
           for (let j = 0; j < response[i].banner.length; j++) {
+  
             var outletBanner = {
               _id: response[i]._id,
               outlet_id: response[i].outlet_id,
@@ -50,13 +53,51 @@ const Listbanner = () => {
             list.push(outletBanner)
           }
         }
-        setValues(list)
+          const data=[]
+          for(let i=0; i<list.length; i++){
+            for(let j=0; j<outletNa.length; j++){
+              if(list[i].outlet_id === outletNa[j].outletId){
+                var obj={
+                    banner:list[i],
+                    outletName:outletNa[j].locality
+                }
+                data.push(obj)
+              }
+          }
+          } 
+        setValues(data)
       } catch (error) {
         setMessage(error.message)
       }
     }
     fetchData()
   }, [])
+
+// useEffect(()=>{
+// const fetchOutlet = async () => {
+//    const res = await axios.get('http://35.154.86.71:7777/outletlist')
+//    setOuteltInfo(res.data.data)
+// }
+// fetchOutlet()
+// },[])
+
+// const compareOulet = (banner, outletInfo)=>{
+//   const data=[]
+//   for(let i=0; i<banner.length; i++){
+//     for(let j=0; j<outletInfo.length; j++){
+//       if(banner[i].outlet_id === outletInfo[j].outletId){
+//         var obj={
+//             banner:banner[i],
+//             outletName:outletInfo[j].locality
+//         }
+//         data.push(obj)
+//       }
+//   }
+//   } 
+//    return data
+// }
+// const result = compareOulet(values, outletInfo)
+// console.log(result)
 
   // Delete data start
   const toDelete = (id, outlet_id) => {
@@ -68,7 +109,6 @@ const Listbanner = () => {
             return val._id !== id
           }),
         )
-      //  setMessage('Successfully banner data deleted')
       alert('Successfully banner data deleted')
       window.location.reload()
       })
@@ -113,7 +153,7 @@ const Listbanner = () => {
                 <CTableHead color="light">
                   <CTableRow className="text-center">
                     <CTableHeaderCell>Sr. No.</CTableHeaderCell>
-                    <CTableHeaderCell>Outlet Id</CTableHeaderCell>
+                    <CTableHeaderCell>Outlet Name</CTableHeaderCell>
                     <CTableHeaderCell className="text-center">Banner Title</CTableHeaderCell>
                     <CTableHeaderCell className="image">Image</CTableHeaderCell>
                     <CTableHeaderCell>Active</CTableHeaderCell>
@@ -128,12 +168,12 @@ const Listbanner = () => {
                     ? values.map((item, index) => (
                         <CTableRow key={index} className="text-center ">
                           <CTableDataCell>{index + 1}</CTableDataCell>
-                          <CTableDataCell>{item.outlet_id}</CTableDataCell>
-                          <CTableDataCell>{item.banner.banner_title}</CTableDataCell>
+                          <CTableDataCell>{item.outletName}</CTableDataCell>
+                          <CTableDataCell>{item.banner.banner.banner_title}</CTableDataCell>
                           <CTableDataCell>
                             {
                               <img
-                                src={baseUri + item.banner.image_path}
+                                src={baseUri + item.banner.banner.image_path}
                                 className='rounded'
                                 height="40px"
                                 width="50px"
@@ -141,13 +181,13 @@ const Listbanner = () => {
                               />
                             }
                           </CTableDataCell>
-                          <CTableDataCell>{item.banner.is_active}</CTableDataCell>
-                          <CTableDataCell>{item.banner.is_fix}</CTableDataCell>
+                          <CTableDataCell>{item.banner.banner.is_active}</CTableDataCell>
+                          <CTableDataCell>{item.banner.banner.is_fix}</CTableDataCell>
                           <CTableDataCell>
-                            {item.banner.is_fix == 0 ? date(item.banner.duration.fromdate) : '-'}
+                            {item.banner.banner.is_fix == 0 ? date(item.banner.banner.duration.fromdate) : '-'}
                           </CTableDataCell>
                           <CTableDataCell>
-                            {item.banner.is_fix == 0 ? date(item.banner.duration.todate) : '-'}
+                            {item.banner.banner.is_fix == 0 ? date(item.banner.banner.duration.todate) : '-'}
                           </CTableDataCell>
                           {/* <div> */}
                           <CTableDataCell>
@@ -155,14 +195,14 @@ const Listbanner = () => {
                               <button
                                 className="btn btn-info"
                                 type="button"
-                                onClick={() => handleProcess(item.banner._id)}
+                                onClick={() => handleProcess(item.banner.banner._id)}
                               >
                                 Edit
                               </button>{' '}
                               {/* {
                                 console.log(item.banner._id)
                               } */}
-                              <button className="btn btn-danger" onClick={() => toDelete(item.banner._id,item._id)}>
+                              <button className="btn btn-danger" onClick={() => toDelete(item.banner.banner._id,item.banner._id)}>
                                 Delete
                               </button>
                             </div>

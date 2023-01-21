@@ -7,7 +7,6 @@ const lazyRetry = function(componentImport) {
       const hasRefreshed = JSON.parse(
           window.sessionStorage.getItem('retry-lazy-refreshed') || 'false'
       );
-      console.log(hasRefreshed)
       componentImport().then((component) => {
           window.sessionStorage.setItem('retry-lazy-refreshed', 'false');
           resolve(component);
@@ -16,7 +15,7 @@ const lazyRetry = function(componentImport) {
               window.sessionStorage.setItem('retry-lazy-refreshed', 'true'); 
               return window.location.reload(); 
           }
-          reject(error); // Default error behaviour as already tried refresh
+          reject(error);
       });
   });
 };
