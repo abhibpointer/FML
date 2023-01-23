@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-//const {REACT_APP_LOCAL_HOST_ADMIN} = process.env
+const { REACT_APP_ENDPOINT } = process.env
+const {REACT_APP_ADMIN_ENDPOINT } = process.env
 //import './style.css'
 
 import {
@@ -56,7 +57,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    axios.post('http://35.154.86.71:7778/login', {
+    axios.post(`${REACT_APP_ADMIN_ENDPOINT}/login`, {
         userName: userName,
         password: password,
       })

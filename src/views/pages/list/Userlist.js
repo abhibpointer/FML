@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate'
-const {REACT_APP_ADMIN} = process.env
+const { REACT_APP_ENDPOINT } = process.env
+const {REACT_APP_ADMIN_ENDPOINT } = process.env
 import {
   CAvatar,
   CCard,
@@ -16,7 +17,7 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-console.log(REACT_APP_ADMIN)
+console.log(REACT_APP_ADMIN_ENDPOINT)
 function Userlist() {
   const [userData, setUserData] = useState([])
 
@@ -36,7 +37,7 @@ function Userlist() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get(`http://localhost:7778/getUsers?page=${currentPage}`)
+        const result = await axios.get(`${REACT_APP_ADMIN_ENDPOINT}/getUsers?page=${currentPage}`)
         setUserData(result.data.data.User)
         setPageCount(result.data.data.count)
    
@@ -50,7 +51,7 @@ function Userlist() {
   const handleSearch = async (e) => {
     e.preventDefault()
     return await axios
-      .get(`http://localhost:7778/getUsers?search=${value}`)
+      .get(`${REACT_APP_ADMIN_ENDPOINT}/getUsers?search=${value}`)
       .then((res) => {
         setUserData(res.data.data.User)
         setValue('')

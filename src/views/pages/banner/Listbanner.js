@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
-// const {REACT_APP_LOCAL_HOST } = process.env
+const { REACT_APP_ENDPOINT } = process.env
+const {REACT_APP_ADMIN_ENDPOINT } = process.env
 import {
   CAvatar,
   CButton,
@@ -26,19 +27,19 @@ import {
 
 const Listbanner = () => {
   // List show data
-  const navigate = useNavigate()
-  const baseUri = 'http://35.154.86.71:7777'
+  const navigate = useNavigate();
+  const baseUri = `${REACT_APP_ENDPOINT}`;
   const [values, setValues] = useState([]);
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('');
  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get('http://35.154.86.71:7777/getBannerList')
+        const result = await axios.get(`${REACT_APP_ENDPOINT}/getBannerList`);
         const response = result.data.data
 
-        const res = await axios.get('http://35.154.86.71:7777/outletlist')
+        const res = await axios.get(`${REACT_APP_ENDPOINT}/outletlist`);
         const outletNa =res.data.data
 
         const list = []
@@ -73,14 +74,6 @@ const Listbanner = () => {
     fetchData()
   }, [])
 
-// useEffect(()=>{
-// const fetchOutlet = async () => {
-//    const res = await axios.get('http://35.154.86.71:7777/outletlist')
-//    setOuteltInfo(res.data.data)
-// }
-// fetchOutlet()
-// },[])
-
 // const compareOulet = (banner, outletInfo)=>{
 //   const data=[]
 //   for(let i=0; i<banner.length; i++){
@@ -102,7 +95,7 @@ const Listbanner = () => {
   // Delete data start
   const toDelete = (id, outlet_id) => {
     axios
-      .delete(`http://35.154.86.71:7777/deleteBanner/${id}/${outlet_id}`)
+      .delete(`${REACT_APP_ENDPOINT}/deleteBanner/${id}/${outlet_id}`)
       .then(() => {
         setValues(
           values.filter((val) => {
@@ -130,20 +123,16 @@ const Listbanner = () => {
     return b
   }
   return (
-    <>
+    <div>
       <br />
-      <div className="flex-right">
+      <div style={{ display: 'flex', justifyContent: 'flex-end ' }}> 
         <Link to="/addbanner">
-          <button
-            className="btn btn-primary btn-lg"
-           // style={{ display: 'flex', justifyContent: 'flex-end ' }}
-          >
+          <button className="btn btn-primary btn-lg">
             {' '}
             Create
           </button>
         </Link>
       </div>
-      <div />
       <p className="text-medium-emphasis text-center">{message}</p>
       <CRow>
         <CCol xs>
@@ -175,8 +164,8 @@ const Listbanner = () => {
                               <img
                                 src={baseUri + item.banner.banner.image_path}
                                 className='rounded'
-                                height="40px"
-                                width="50px"
+                                height="60px"
+                                width="100px"
                                 border-radius="5px"
                               />
                             }
@@ -217,7 +206,7 @@ const Listbanner = () => {
           </CCard>
         </CCol>
       </CRow>
-    </>
+    </div>
   )
 }
 

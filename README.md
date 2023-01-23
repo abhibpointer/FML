@@ -205,78 +205,8 @@ const uri=`http://localhost:7777/managerlist?outletId=${outletId}`;
 
    "start": "SET PORT=3001 && react-scripts start",
 
-   new Date(date,'dd/mm/yyyy').toISOString.().slice(0,10)
+    http://103.94.57.194:7777
 
-      // if(req.file.filename != null){
-   
-    // }else{
-       
-    // }
-
-     /*if(req.file != undefined || req.file != "") {
-      const file = "banner/" + req.file.filename;
-      updateData = [
-
-
-
-
-                 const updateData = [
-        {
-          banner_title: banner_title,
-          is_active: is_active,
-         // image_path:file,
-          is_fix: is_fix,
-          duration: time,
-        },
-      ];
-      const isExistBanner = await banner.update(
-        { "banner._id": id },
-        { $set: { 
-          "banner.$.banner_title": ,
-       } }
-
-
-
-        //   if(req.file.filename != null) {
-  //  const file = "banner/" + req.file.filename;
-  
-  //  let updateData = [
-  //       {
-  //         banner_title: banner_title,
-  //         image_path: file,
-  //         is_active: is_active,
-  //         is_fix: is_fix,
-  //         duration: time,
-  //       },
-  //     ];
-  //     const isExistBanner = await banner.update(
-  //       { "banner._id": id },
-  //       { $set: { "banner.$": updateData } }
-  //     );
-  //     return res
-  //       .status(200)
-  //       .send({ msg: "Successfully banner data updated", data: isExistBanner });
-  //   } else {
-  //     const updateData = [
-  //       {
-  //         banner_title: banner_title,
-  //         is_active: is_active,
-  //        // image_path:file,
-  //         is_fix: is_fix,
-  //         duration: time,
-  //       },
-  //     ];
-  //     const isExistBanner = await banner.update(
-  //       { "banner._id": id },
-  //       { $set: { "banner.$": updateData } }
-  //     );
-  //     return res
-  //       .status(200)
-  //       .send({ msg: "Successfully banner data updated", data: isExistBanner });
-  //   }
-
-
-   const da = await banner.update({_id:oulet_id}, {$pull:{banner:{_id:id}}})
-    return res
-    .status(200)
-    .send({ status: true, msg: "Successfully Banner deleted" });
+    npm run build:testing
+    npm run build:staging
+    npm run build:development

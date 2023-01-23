@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-// const {REACT_APP_LOCAL_HOST } = process.env
+const { REACT_APP_ENDPOINT } = process.env
+const {REACT_APP_ADMIN_ENDPOINT } = process.env
 import {
   CButton,
   CCard,
@@ -42,7 +43,7 @@ function FoodAdd() {
       formData.append('uploadfile', file)
 
       await axios
-        .post(`http://35.154.86.71:7777/updatefooddata`, formData)
+        .post(`${REACT_APP_ENDPOINT}/updatefooddata`, formData)
         .then((res) => {
           console.log(res)
           alert('Food file Add successfully');

@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-// const {REACT_APP_LOCAL_HOST } = process.env
+const { REACT_APP_ENDPOINT } = process.env
+const {REACT_APP_ADMIN_ENDPOINT } = process.env
 
 import {
   CButton,
@@ -20,7 +21,7 @@ import {
   CInputGroupText,
   CRow,
 } from '@coreui/react'
-
+console.log(REACT_APP_ENDPOINT)
 function Editbanner() {
   const { id } = useParams()
 
@@ -61,7 +62,7 @@ function Editbanner() {
   // fileChange(preFile)
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get('http://35.154.86.71:7777/outletlist').then((res) => {
+      await axios.get(`${REACT_APP_ENDPOINT}/outletlist`).then((res) => {
         setOuletInfo(res.data.data)
       }, [])
     }
@@ -72,7 +73,7 @@ function Editbanner() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const getData = await axios.get(`http://35.154.86.71:7777/getBanner/${id}`)
+        const getData = await axios.get(`${REACT_APP_ENDPOINT}/getBanner/${id}`)
         let items = getData.data.data
         const item = items.banner.find((obj) => obj._id == id)
 
@@ -120,7 +121,7 @@ function Editbanner() {
     formData.append('fromdate', fromdate)
     formData.append('uploadfile', file)
 
-    axios.put(`http://35.154.86.71:7777/updateBanner/${id}`, formData)
+    axios.put(`${REACT_APP_ENDPOINT}/updateBanner/${id}`, formData)
       .then((res) => {
         console.log(res)
         alert('Successfully banner data updated')

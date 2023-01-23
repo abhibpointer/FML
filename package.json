@@ -18,7 +18,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"src/**/*.js\"",
     "start": "react-scripts start",
-    "test": "react-scripts test",
+    "dev": "env-cmd -f .env.development react-scripts start",
+    "testing": "env-cmd -f .env.testing react-scripts start",
+    "production": "env-cmd -f .env.production react-scripts start",
     "test:cov": "npm test -- --coverage --watchAll=false",
     "test:debug": "react-scripts --inspect-brk test --runInBand"
   },
@@ -38,6 +40,7 @@
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
+    "env-cmd": "^10.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-app-polyfill": "^3.0.0",
