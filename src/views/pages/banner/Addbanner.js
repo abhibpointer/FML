@@ -5,7 +5,6 @@ const { REACT_APP_ENDPOINT } = process.env
 const {REACT_APP_ADMIN_ENDPOINT } = process.env
 import { format } from 'date-fns'
 import { useRef } from 'react'
-import './Addbanner.css'
 import { useNavigate } from 'react-router-dom'
 import {
   CButton,

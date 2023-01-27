@@ -60,6 +60,11 @@ const _nav = [
    name:'Manager list',
    to:'/managerlist'
   },
+  {
+   component:CNavItem,
+   name: 'Add Manager',
+   to:'addmanager'
+  },
   // {
   //  component:CNavItem,
   //  name:'User list',
@@ -72,10 +77,22 @@ const _nav = [
   },
 
   {
-    component:CNavItem,
-    name:'Add drink excel',
-    to:'/adddrink'
-   },
+   component:CNavGroup,
+   name:'drink',
+   items:[
+    {
+      component:CNavItem,
+      name:'Add drink excel',
+      to:'/adddrink'
+     },
+     {
+      component:CNavItem,
+      name:'Download drink',
+      to:'/downloaddrink'
+     },
+   ]
+  },
+ 
   // {
   //   component: CNavTitle,
   //   name: 'Components',

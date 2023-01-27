@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "4.4.0",
-  "description": "CoreUI Free React Admin Template",
+  "description": "FML App",
   "homepage": "http://admin.fmlhospitality.com/",
   "bugs": {
     "url": "https://github.com/coreui/coreui-free-react-admin-template/issues"
@@ -41,6 +41,7 @@
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
     "env-cmd": "^10.1.0",
+    "file-saver": "^2.0.5",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-app-polyfill": "^3.0.0",
@@ -52,6 +53,7 @@
     "react-router-dom": "^6.3.0",
     "redux": "4.2.0",
     "simplebar-react": "^2.4.1",
+    "uninstall": "^0.0.0",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

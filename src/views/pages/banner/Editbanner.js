@@ -210,7 +210,8 @@ function Editbanner() {
                           disableFuture
                           className="form-control"
                           value={fromdate}
-                          dateFormat="dd/MM/yyyy"
+                          // dateFormat="dd/MM/yyyy"
+                          dateFormat="yyyy/MM/dd"
                           name="fromDate"
                           isClearable
                           onChange={handleFromdate}
@@ -223,7 +224,7 @@ function Editbanner() {
                           className="form-control"
                           value={todate}
                           openTo="year"
-                          dateFormat="dd/MM/yyyy"
+                          dateFormat="yyyy/MM/dd"
                           max={todate}
                           onChange={handletodate}
                           isClearable

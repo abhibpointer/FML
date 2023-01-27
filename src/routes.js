@@ -77,12 +77,14 @@ const Banneredit = React.lazy(()=> lazyRetry(()=> import('./views/pages/banner/E
 const Bannerlist = React.lazy(()=> import('./views/pages/banner/Listbanner'))
 //Manager list
 const Managerlist = React.lazy(()=> import('./views/pages/list/Managerlist'))
+const AddManager = React.lazy(()=> import('./views/pages/list/AddManager'))
 //UserList
 const Userlist = React.lazy(()=> import('./views/pages/list/Userlist'))
 //Add Food Excel
 const FoodAdd = React.lazy(()=> import('./views/pages/food/FoodAdd'))
 //Add Drink Excel
 const DrinkAdd = React.lazy(()=> import('./views/pages/drink/DrinkAdd'))
+const Downloaddrinks = React.lazy(()=> import('./views/pages/drink/Downloaddrinks'))
 
   const routes =[
     
@@ -138,6 +140,7 @@ const DrinkAdd = React.lazy(()=> import('./views/pages/drink/DrinkAdd'))
   
     //Manager List Route
     {path: '/managerlist', name:'Manager list', element:Managerlist},
+    {path: '/addmanager', name:'Add Manager', element:AddManager},
   
     // User List Route
      {path:'/userlist', name:"User list", element:Userlist},
@@ -147,7 +150,7 @@ const DrinkAdd = React.lazy(()=> import('./views/pages/drink/DrinkAdd'))
   
     //Drink
     {path:'/adddrink', name:'Add drink excel', element:DrinkAdd},
-  
+    {path:'/downloaddrink', name:'Download drink', element:Downloaddrinks}
   ]
 
 

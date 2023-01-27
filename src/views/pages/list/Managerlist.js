@@ -31,6 +31,7 @@ function Managerlist() {
   const fetchData = async () => {
     const getData = await axios.get(`${REACT_APP_ENDPOINT}/outletlist`)
     setOutletInfo(getData.data.data)
+    
   }
     fetchData()
   }, [])
@@ -39,6 +40,7 @@ function Managerlist() {
     const data = async () =>{
       const result = await axios.get(`${REACT_APP_ENDPOINT}/managerlist?accessType=manager`)
       setList(result.data.data)
+      console.log(result.data.data)
     }
     data()
   },[])
@@ -53,6 +55,7 @@ function Managerlist() {
     await axios.get(uri)
       .then((res) => {
         setList(res.data.data)
+        console.log(res.data.data)
       })
       .catch((error) => {
         console.log(error.message)
