@@ -85,6 +85,7 @@ const FoodAdd = React.lazy(()=> import('./views/pages/food/FoodAdd'))
 //Add Drink Excel
 const DrinkAdd = React.lazy(()=> import('./views/pages/drink/DrinkAdd'))
 const Downloaddrinks = React.lazy(()=> import('./views/pages/drink/Downloaddrinks'))
+const deletedrinkproduct = React.lazy(()=> import('./views/pages/drink/Deletedrinkproduct'))
 
   const routes =[
     
@@ -150,7 +151,8 @@ const Downloaddrinks = React.lazy(()=> import('./views/pages/drink/Downloaddrink
   
     //Drink
     {path:'/adddrink', name:'Add drink excel', element:DrinkAdd},
-    {path:'/downloaddrink', name:'Download drink', element:Downloaddrinks}
+    {path:'/downloaddrink', name:'Download drink', element:Downloaddrinks},
+    {path: '/deletedrinkproduct', name:"Delete Drink Product", element:deletedrinkproduct}
   ]
 
 

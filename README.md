@@ -204,6 +204,9 @@ const uri=`http://localhost:7777/managerlist?outletId=${outletId}`;
   
 
    "start": "SET PORT=3001 && react-scripts start",
+   
+    "testing": "env-cmd -f .env.testing react-scripts start",
+    "production": "env-cmd -f .env.production react-scripts start",
 
     http://103.94.57.194:7777
 

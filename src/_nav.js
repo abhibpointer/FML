@@ -90,6 +90,11 @@ const _nav = [
       name:'Download drink',
       to:'/downloaddrink'
      },
+     {
+      component:CNavItem,
+      name:'Delete Drink Product',
+      to:'/deletedrinkproduct'
+     }
    ]
   },
  
