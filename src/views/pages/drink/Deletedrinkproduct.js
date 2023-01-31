@@ -57,6 +57,7 @@ const handleDelete = (e) =>{
  axios.post(`${REACT_APP_ENDPOINT}/deletedrinkdata`, formData).then((res)=>{
   console.log(res)
   alert('product deleted successfully')
+  window.location.reload()
  })
  .catch((error)=>{
   console.log(error)

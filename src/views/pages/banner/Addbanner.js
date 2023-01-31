@@ -21,6 +21,7 @@ import {
 } from '@coreui/react'
 
  console.log(REACT_APP_ENDPOINT)
+ 
 function Addbanner() {
   const ref = useRef(null)
   const navigate = useNavigate()

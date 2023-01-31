@@ -43,7 +43,7 @@ function FoodAdd() {
       formData.append('uploadfile', file)
 
       await axios
-        .post(`${REACT_APP_ENDPOINT}/updatefooddata`, formData)
+        .post(`${REACT_APP_ADMIN_ENDPOINT}/updatefooddata`, formData)
         .then((res) => {
           console.log(res)
           alert('Food file Add successfully');

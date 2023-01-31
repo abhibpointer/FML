@@ -42,7 +42,7 @@ function DrinkAdd() {
     formData.append('uploadfile', file)
 
     await axios
-      .post(`${REACT_APP_ENDPOINT}/updatedrinkdata`, formData)
+      .post(`${REACT_APP_ADMIN_ENDPOINT}/updatedrinkdata`, formData)
       .then((res) => {
         console.log(res)
         alert('Food file Add successfully');
