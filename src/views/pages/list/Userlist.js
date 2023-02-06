@@ -17,8 +17,11 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
+
 console.log(REACT_APP_ADMIN_ENDPOINT)
+
 function Userlist() {
+  const baseUri =`${REACT_APP_ADMIN_ENDPOINT}`
   const [userData, setUserData] = useState([])
 
   const [value, setValue] = useState('')
@@ -39,6 +42,7 @@ function Userlist() {
       try {
         const result = await axios.get(`${REACT_APP_ADMIN_ENDPOINT}/getUsers?page=${currentPage}`)
         setUserData(result.data.data.User)
+        console.log(result.data.data.User)
         setPageCount(result.data.data.count)
    
       } catch (error) {
@@ -53,8 +57,9 @@ function Userlist() {
     return await axios
       .get(`${REACT_APP_ADMIN_ENDPOINT}/getUsers?search=${value}`)
       .then((res) => {
+        console.log(res)
         setUserData(res.data.data.User)
-        setValue('')
+       // setValue('')
       })
       .catch((err) => console.log(err.message))
   }
@@ -91,6 +96,7 @@ function Userlist() {
                 <CTableHead color="light">
                   <CTableRow className="text-center">
                     <CTableHeaderCell>Sr. No.</CTableHeaderCell>
+                    {/* <CTableHeaderCell>Image</CTableHeaderCell> */}
                     <CTableHeaderCell>userId</CTableHeaderCell>
                     <CTableHeaderCell>Name</CTableHeaderCell>
                     <CTableHeaderCell>Contact Number</CTableHeaderCell>
@@ -113,6 +119,13 @@ function Userlist() {
                       <CTableRow key={index} className="text-center">
                         <CTableDataCell>{index + 1 * lastPage+1}</CTableDataCell>
                         {/* index*PageNum index + 1 * lastPage + 1 */}
+                        {/* <CTableDataCell>{user.profilePic ? 
+                        <img src={user.profilePic }
+                        className="rounded"
+                        width='60px'
+                        height='40px'
+                         
+                        />:'-'}</CTableDataCell> */}
                         <CTableDataCell>{user.userId ? user.userId : '-'}</CTableDataCell>
                         <CTableDataCell>{user.name ? user.name : '-'}</CTableDataCell>
                         <CTableDataCell>{

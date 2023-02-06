@@ -12,8 +12,19 @@ import {
   cilPuzzle,
   cilSpeedometer,
   cilStar,
+  cilList,
+  cilHome,
+  cilFile,
+  cilListFilter,
+  cilDataTransferDown,
+  cilDataTransferUp,
+  cilListNumbered,
+  cilTrash,
+  cilUserPlus,
 } from '@coreui/icons'
-import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
+import { CNavGroup, CNavItem, CNavTitle, CAvatar } from '@coreui/react'
+import deletefile from '../src/assets/icon/file.png'
+
 
 const _nav = [
 
@@ -53,47 +64,56 @@ const _nav = [
     component: CNavItem,
     name: 'Banners',
     to: '/bannerlist',
-    //  icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilHome} customClassName="nav-icon" />,
   },
   {
    component: CNavItem,
    name:'Manager list',
-   to:'/managerlist'
+   to:'/managerlist',
+   icon:<CIcon icon={cilListFilter} customClassName="nav-icon"/>
   },
   {
    component:CNavItem,
    name: 'Add Manager',
-   to:'addmanager'
+   to:'addmanager',
+   icon:<CIcon icon={cilUserPlus} customClassName="nav-icon"/>
   },
-  // {
-  //  component:CNavItem,
-  //  name:'User list',
-  //  to:'/userlist'
-  // },
+  {
+   component:CNavItem,
+   name:'User list',
+   to:'/userlist',
+   icon:<CIcon icon={cilListNumbered} customClassName='nav-icon'/>,
+
+  },
   {
    component:CNavItem,
    name:'Add food excel',
-   to:'/addfood'
+   to:'/addfood',
+   icon:<CIcon icon={cilFile} customClassName='nav-icon'/>,
   },
 
   {
    component:CNavGroup,
    name:'drink',
+   icon:<CIcon icon={cilList} customClassName='nav-icon'/>,
    items:[
     {
       component:CNavItem,
       name:'Add drink excel',
-      to:'/adddrink'
+      to:'/adddrink', 
+      icon:<CIcon icon={cilFile} customClassName='nav-icon'/>,
      },
      {
       component:CNavItem,
       name:'Download drink',
-      to:'/downloaddrink'
+      to:'/downloaddrink',
+      icon:<CIcon icon={cilDataTransferDown} customClassName='nav-icon'/>,
      },
      {
       component:CNavItem,
       name:'Delete Drink Product',
-      to:'/deletedrinkproduct'
+      to:'/deletedrinkproduct',
+      icon:<CIcon icon={cilTrash} customClassName='nav-icon'/>
      }
    ]
   },

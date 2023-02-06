@@ -62,9 +62,10 @@ const Login = () => {
         password: password,
       })
       .then((res) => {
-        
+        console.log(res)
         if (res.data.data.auth_token) {
          const key = res.data.data.auth_token
+        
           localStorage.clear()
           //localStorage.setItem('auth_token', key) 
            localStorage.setItem("auth_token", JSON.stringify(key))

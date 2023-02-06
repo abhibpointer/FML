@@ -9,11 +9,9 @@ function LogOut() {
     nevigate('/login');
   }
   return (
-    <div>
-      <button className="btn btn-danger" onClick={logout}>
-        LogOut
-      </button>
-    </div>
+       <div className='' onClick={logout}>
+        Logout
+      </div>
   )
 }
 export default LogOut

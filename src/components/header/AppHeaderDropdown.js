@@ -86,7 +86,7 @@ const AppHeaderDropdown = () => {
           </CBadge>
         </CDropdownItem>
         <CDropdownDivider /> */}
-        <CDropdownItem>
+        <CDropdownItem className='text-center mt-1'>
            <LogOut/>
         </CDropdownItem>
       </CDropdownMenu>

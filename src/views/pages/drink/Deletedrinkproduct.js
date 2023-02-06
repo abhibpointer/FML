@@ -27,8 +27,6 @@ function Deletedrinkproduct() {
 
 const handleExcelFile = (event) =>{
  const file = event.target.files[0];
-//  let fileType = ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"]
-// console.log(file.type)
 
  if(file){
 let fileName = file.name

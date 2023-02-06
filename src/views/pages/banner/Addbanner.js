@@ -127,7 +127,6 @@ function Addbanner() {
       setFile(file)
     } else {
       alert('Please enter valid formate file')
-      window.location.reload()
     }
   }
 
@@ -161,8 +160,7 @@ function Addbanner() {
       .then((res) => {
         console.log(res)
         alert('Successfully banner data added')
-        window.location.reload()
-        //need to improve on redirection
+       // window.location.reload()
         navigate('/bannerlist')
       })
       .catch(() => {
