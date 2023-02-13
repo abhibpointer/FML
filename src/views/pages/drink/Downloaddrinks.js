@@ -21,6 +21,7 @@ function Downloaddrinks() {
     const arr= res.data.data.drinks
     const name= res.data.data.locality
     const map = arr.map(item => ({outletId:outletId, ...item}))
+   // console.lop(map)
     setDrinkData(map)
     setName(name)
   
