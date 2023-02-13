@@ -84,7 +84,7 @@ const Userlist = React.lazy(()=> import('./views/pages/list/Userlist'))
 const FoodAdd = React.lazy(()=> import('./views/pages/food/FoodAdd'))
 //Add Drink Excel
 const DrinkAdd = React.lazy(()=> import('./views/pages/drink/DrinkAdd'))
-const Downloaddrinks = React.lazy(()=> lazyRetry(import('./views/pages/drink/Downloaddrinks')))
+const Downloaddrinks = React.lazy(()=> import('./views/pages/drink/Downloaddrinks'))
 const deletedrinkproduct = React.lazy(()=> import('./views/pages/drink/Deletedrinkproduct'))
 const Child= React.lazy(()=>import('./views/pages/list/Child'))
 const Child2 = React.lazy(()=> import('./views/pages/list/Child2'))
