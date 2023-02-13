@@ -45,7 +45,7 @@ function DrinkAdd() {
       .post(`${REACT_APP_ADMIN_ENDPOINT}/updatedrinkdata`, formData)
       .then((res) => {
         console.log(res)
-        alert('Food file Add successfully');
+        alert('Drink file Add successfully');
         window.location.reload();
       })
       .catch((error) => {

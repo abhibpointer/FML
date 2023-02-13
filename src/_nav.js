@@ -72,19 +72,40 @@ const _nav = [
    to:'/managerlist',
    icon:<CIcon icon={cilListFilter} customClassName="nav-icon"/>
   },
-  {
-   component:CNavItem,
-   name: 'Add Manager',
-   to:'addmanager',
-   icon:<CIcon icon={cilUserPlus} customClassName="nav-icon"/>
-  },
-  {
-   component:CNavItem,
-   name:'User list',
-   to:'/userlist',
-   icon:<CIcon icon={cilListNumbered} customClassName='nav-icon'/>,
+  // {
+  //  component:CNavItem,
+  //  name: 'Add Manager',
+  //  to:'addmanager',
+  //  icon:<CIcon icon={cilUserPlus} customClassName="nav-icon"/>
+  // },
+  // {
+  //  component:CNavItem,
+  //  name:'Customers list',
+  //  to:'/userlist',
+  //  icon:<CIcon icon={cilListNumbered} customClassName='nav-icon'/>,
 
-  },
+  // },
+  // {
+  //   component:CNavItem,
+  //   name:'customer',
+  //   to:'/customer',
+  //   icon:<CIcon icon={cilListNumbered} customClassName='nav-icon'/>,
+ 
+  //  },
+  // {
+  //   component:CNavItem,
+  //   name:'user',
+  //   to:'/names',
+  //   icon:<CIcon icon={cilListNumbered} customClassName='nav-icon'/>,
+ 
+  //  },
+  //  {
+  //   component:CNavItem,
+  //   name:'export',
+  //   to:'/child',
+  //   icon:<CIcon icon={cilListNumbered} customClassName='nav-icon'/>,
+ 
+  //  },
   {
    component:CNavItem,
    name:'Add food excel',

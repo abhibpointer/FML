@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 const { REACT_APP_ENDPOINT } = process.env
 const {REACT_APP_ADMIN_ENDPOINT } = process.env
@@ -68,6 +69,12 @@ function Managerlist() {
         <h3 className="text-center">Manager List</h3>
         <span>{messageErr}</span>
         <div className='row flex justify-content-end'>
+           {/* TODO: For Manager list */}
+          {/* <div className='col-md-2'>
+            <Link to='/addmanager'>
+           <button type='button' className='btn btn-primary'>Add Manager</button>
+           </Link>
+          </div> */}
           <div className='col-md-2'>
           <select className="search dropdown mt-0 w-100 h-100"
           onChange={(e) => setValues(e.target.value)}

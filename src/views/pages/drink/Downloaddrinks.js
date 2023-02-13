@@ -25,16 +25,6 @@ function Downloaddrinks() {
     setName(name)
   
   }
-  // useEffect(()=>{
-  //   const fetData =async()=>{
-  //     const r=await axios.get(`${REACT_APP_ENDPOINT}/downloaddrink/${drinkData}`)
-  //     const arr= r.data.data.drinks
-  //  const mapped = arr.map(element => ({outletId:drinkData ,...element}))
-  //  console.log(mapped)
-    
-  //   }
-  //   fetData()
-  // },[drinkData])
   useEffect(() => {
     const fetchOulet = async () => {
       const oulet = await axios.get(`${REACT_APP_ENDPOINT}/outletlist`)
@@ -51,8 +41,8 @@ function Downloaddrinks() {
       const worksheet = workbook.addWorksheet('Sheet 1');
 
       worksheet.columns=[
-        {header:'ItemCode', key:'itemCode', width: 9},
-        {header:'Internal_Item_Id', key:'InternalId', width: 9},
+        {header:'Item_Code', key:'itemCode', width: 9},
+        {header:'Internal Item Id  (if any)', key:'InternalId', width: 9},
         {header:'Drink_Name', key:'name', width: 30},
         {header:'Category', key:'category', width: 20},
         {header:'Outlet_ID', key:'outletId', width: 9},
@@ -63,10 +53,10 @@ function Downloaddrinks() {
         {header:'Price_Increment_Per_Drink', key:'priceIncrementPerUnit', width:20},
         {header:'Current_Price', key:'runningPrice', width: 9},
         {header:'Status', key:'status', width: 9},
-        {header:'Is_Offer', key:'isOffer', width: 9},
-        {header:'Offer_Name', key:'offerName', width: 9},
-        {header:'Special_Tab', key:'specialTab', width: 9},
-        {header:'Tab_Name', key:'tabName', width: 9},
+        {header:'Is Offer', key:'isOffer', width: 9},
+        {header:'Offer Name', key:'offerName', width: 9},
+        {header:'Special Tab', key:'specialTab', width: 9},
+        {header:'Tab Name', key:'tabName', width: 9},
         {header:'skucode', key:'skucode', width: 9},  
       ]
 

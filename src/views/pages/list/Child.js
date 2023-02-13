@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
@@ -7,6 +8,7 @@ const { REACT_APP_ENDPOINT } = process.env
 const {REACT_APP_ADMIN_ENDPOINT } = process.env
 import Exportuserlist from './Exportuserlist'
 import FilterUserByDate from './FilterUserByDate'
+import Child2 from './Child2'
 
 import {
   CAvatar,
@@ -22,9 +24,8 @@ import {
   CTableRow,
 } from '@coreui/react'
 
-
-function Userlist(props) {
-  
+function Child() {
+ // console.log(fromdate,"hkkkk",todate)
   const [userData, setUserData] = useState([])
 
   const [value, setValue] = useState('')
@@ -35,20 +36,21 @@ function Userlist(props) {
   const [fromDate, setFromDate] = useState('')
   const [toDate, setToDate] = useState('')
 
-  // console.log(fromDate)
-  // console.log(toDate)
-  // useEffect(()=>{
-  //   setFromDate(props.changeDate)
-  //   setToDate(props.todate)
-  // },[props.changeDate,props.todate])
- const lastPage = currentPage * userPerPage
+// console.log(fromDate)
+// console.log(toDate)
+// useEffect(()=>{
+//   setFromDate(props.changeDate)
+//   setToDate(props.todate)
+// },[props.changeDate,props.todate])
+
+  const lastPage = currentPage * userPerPage
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get(`${REACT_APP_ADMIN_ENDPOINT}/getUsers?page=${currentPage}`)
+        const result = await axios.get(`${REACT_APP_ENDPOINT}/getUsers?page=${currentPage}`)
         setUserData(result.data.data.User)
-       // console.log(result.data.data.User)
+       // console.log(result.data.data.count)
         setPageCount(result.data.data.count)
    
       } catch (error) {
@@ -58,13 +60,34 @@ function Userlist(props) {
     fetchData()
   }, [currentPage])
 
-  const handleSearch = async (e) => {
+  // if(fromDate  && toDate){
+  // useEffect(()=>{
+  //   let filter = async ()=>{
+  //     try {
+  //       let result = await axios.get(`${REACT_APP_ENDPOINT}/userFilters?fromdate=${fromDate}&todate=${toDate}`)
+  //       console.log(result.data.data)
+  //     } catch (error) {
+  //       console.log(error.message)
+  //     }
+  //   }
+  //   filter()
+  // })
+  // }
+  const handleSearch = (e) => {
     e.preventDefault()
-    return await axios
-      .get(`${REACT_APP_ADMIN_ENDPOINT}/getUsers?search=${value}`)
+     let obj = [];
+     if(fromDate || toDate){
+      obj.push(`${REACT_APP_ENDPOINT}/getUsers?fromdate=${fromDate}&todate=${toDate}`)
+     }else{
+      obj.push(`${REACT_APP_ENDPOINT}/getUsers?search=${value}`)
+     }
+   let uri=obj[0]
+     axios
+      .get(uri)
       .then((res) => {
         console.log(res)
         setUserData(res.data.data.User)
+        setPageCount(res.data.data.count)
        // setValue('')
       })
       .catch((err) => console.log(err.message))
@@ -80,13 +103,57 @@ function Userlist(props) {
    return date
   }
 
+  const formatDate = (dateStr) => {
+    const [year, month, day] = dateStr.split('-');
+    let newDate = `${month}-${day}-${year}`;
+    return newDate;
+  };
+
+  const handleFromDate=(e)=>{
+    let fromdate = e.target.value;
+      let formateDate = formatDate(fromdate)                                     
+       setFromDate(formateDate)
+  }
+
+
+  const handleToDate =(e)=>{
+    let todate = e.target.value
+    let formattodate = formatDate(todate)                                             
+    setToDate(formattodate)
+  }
   return (
     <div className="mt-3">
-      <h2 className="text-center bg-light">User List</h2>
-      
       <div className="row mt-2">
       {/* <div className='col-md-9 mt-2'><FilterUserByDate /></div> */}
       {/* <div className="col-md-8 mt-4"> <Exportuserlist/></div> */}
+      {/* <div className='col-md-2 pt-4'>
+        <button className='btn btn-success' onClick={(e)=>handleSubmit(e)}>Export File</button>
+     </div> */}
+     <div><Child2 
+     fromdate={fromDate}
+      todate={toDate}
+     /></div>
+    
+    <div className='col-md-3'>
+    <label className="">From date:</label>
+    <input 
+    type='date'
+    className='form-control'
+    // format='yyyy/mm/dd'
+    name="fromdate"
+    onChange={handleFromDate}
+    />
+    </div>
+    <div className='col-md-3'>
+      <label className=''>To date:</label>
+      <input
+       type="date"
+       className="form-control"
+      //  format='yyyy/mm/dd'
+       name="todate"
+       onChange={handleToDate}
+       />
+       </div>
         <div className="col-md-3 mt-4 pt-4 ml-5">
           <input
             type="search"
@@ -184,7 +251,8 @@ function Userlist(props) {
   )
 }
 
-export default Userlist
+export default Child
+
 
 
 
@@ -195,7 +263,7 @@ export default Userlist
 // import { format } from 'date-fns'
 // const { REACT_APP_ENDPOINT } = process.env
 // const {REACT_APP_ADMIN_ENDPOINT } = process.env
-// // import Exportuserlist from './Exportuserlist'
+// import Exportuserlist from './Exportuserlist'
 // import FilterUserByDate from './FilterUserByDate'
 
 // import {
@@ -212,17 +280,24 @@ export default Userlist
 //   CTableRow,
 // } from '@coreui/react'
 
-// function Userlist() {
-  
+// function Child(props) {
+//  // console.log(fromdate,"hkkkk",todate)
 //   const [userData, setUserData] = useState([])
 
 //   const [value, setValue] = useState('')
+//   console.log(value)
 //   const [currentPage, setCurrentPage] = useState(0)
 //   const [userPerPage] = useState(10)
 //   const [pageCount, setPageCount] = useState(1)
-//   const [fromDate, setFromDate] = useState('')
-//   const [toDate, setToDate] = useState('')
+//   const [fromDate, setFromDate] = useState(props.changeDate)
+//   const [toDate, setToDate] = useState(props.todate)
 
+// console.log(fromDate)
+// console.log(toDate)
+// useEffect(()=>{
+//   setFromDate(props.changeDate)
+//   setToDate(props.todate)
+// },[props.changeDate,props.todate])
 
 //   const lastPage = currentPage * userPerPage
 
@@ -231,7 +306,7 @@ export default Userlist
 //       try {
 //         const result = await axios.get(`${REACT_APP_ADMIN_ENDPOINT}/getUsers?page=${currentPage}`)
 //         setUserData(result.data.data.User)
-//        // console.log(result.data.data.User)
+//        // console.log(result.data.data.count)
 //         setPageCount(result.data.data.count)
    
 //       } catch (error) {
@@ -241,9 +316,23 @@ export default Userlist
 //     fetchData()
 //   }, [currentPage])
 
-//   const handleSearch = async (e) => {
+//   // if(fromDate  && toDate){
+//   // useEffect(()=>{
+//   //   let filter = async ()=>{
+//   //     try {
+//   //       let result = await axios.get(`${REACT_APP_ENDPOINT}/userFilters?fromdate=${fromDate}&todate=${toDate}`)
+//   //       console.log(result.data.data)
+//   //     } catch (error) {
+//   //       console.log(error.message)
+//   //     }
+//   //   }
+//   //   filter()
+//   // })
+//   // }
+//   const handleSearch = (e) => {
 //     e.preventDefault()
-//     return await axios
+ 
+//      axios
 //       .get(`${REACT_APP_ADMIN_ENDPOINT}/getUsers?search=${value}`)
 //       .then((res) => {
 //         console.log(res)
@@ -265,8 +354,11 @@ export default Userlist
 
 //   return (
 //     <div className="mt-3">
-//       <h2 className="text-center bg-light">User List</h2>
-      
+//       {/* <h2 className="text-center bg-light">User List</h2> */}
+//       {/* <input onChange={(e)=>props.changeDate(e.target.value)}/> */}
+//       {/* <input onChange={(e)=>props.changeDate()}/> */}
+
+//       {/* changeDate={date=>{setFromDate(date)}} */}
 //       <div className="row mt-2">
 //       {/* <div className='col-md-9 mt-2'><FilterUserByDate /></div> */}
 //       {/* <div className="col-md-8 mt-4"> <Exportuserlist/></div> */}
@@ -367,5 +459,4 @@ export default Userlist
 //   )
 // }
 
-// export default Userlist
-
+// export default Child
