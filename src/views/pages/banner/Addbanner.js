@@ -20,13 +20,13 @@ import {
   CFormSelect,
 } from '@coreui/react'
 
- console.log(REACT_APP_ENDPOINT)
  
 function Addbanner() {
   const ref = useRef(null)
   const navigate = useNavigate()
   const [title, setTitle] = useState('')
   const [outletid, setOutletId] = useState('')
+  console.log(outletid)
   const [active, setActive] = useState(1)
   const [fix, setFix] = useState('')
   const [todate, setToDate] = useState('')
@@ -59,24 +59,14 @@ function Addbanner() {
 
   const handleOutletId = (e) => {
     let outletId = e.target.value
-    if (!Number(outletId) || outletId.trim() == null || outletId == '') {
-      setOutletErr('OutletId is required')
-    } else {
-      setOutletErr(false), setOutletErr('')
-    }
+    // if (!Number(outletId) || outletId.trim() == null || outletId == '') {
+    //   setOutletErr('OutletId is required')
+    // } else {
+    //   setOutletErr(false), setOutletErr('')
+    // }
     setOutletId(outletId)
   }
 
-  // const handleActive = (e) => {
-  //   let active = e.target.value
-  //   let re = /[1]/g
-  //   if (!re.test(active) || active.trim() == null) {
-  //     setActiveErr('Active is required')
-  //   } else {
-  //     setActiveErr(false), setActiveErr('')
-  //   }
-  //   setActive(active)
-  // }
 
   const handleFix = (e) => {
     let fix = e.target.value
@@ -196,6 +186,7 @@ function Addbanner() {
                     <label className="form-label">Oulet :</label>
                     <CFormSelect className="text-left" value={outletid} onChange={handleOutletId}>
                       <option>Select Outlet</option>
+                      <option value ="0">Other</option>
                       {ouletInfo
                         ? ouletInfo.map((item, index) => (
                             <option key={index} value={item.outletId}>

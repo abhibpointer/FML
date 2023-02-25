@@ -5,6 +5,7 @@ import CIcon from '@coreui/icons-react'
 import { cilCode, cilMediaPlay } from '@coreui/icons'
 
 const DocsExample = (props) => {
+  console.log(props)
   const { children, href } = props
 
   const _href = `https://coreui.io/react/docs/${href}`

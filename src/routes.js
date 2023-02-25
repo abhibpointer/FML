@@ -86,9 +86,8 @@ const FoodAdd = React.lazy(()=> import('./views/pages/food/FoodAdd'))
 const DrinkAdd = React.lazy(()=> import('./views/pages/drink/DrinkAdd'))
 const Downloaddrinks = React.lazy(()=> import('./views/pages/drink/Downloaddrinks'))
 const deletedrinkproduct = React.lazy(()=> import('./views/pages/drink/Deletedrinkproduct'))
-const Child= React.lazy(()=>import('./views/pages/list/Child'))
-const Child2 = React.lazy(()=> import('./views/pages/list/Child2'))
-const Customer= React.lazy(()=> import('./views/pages/list/Customer'))
+
+const Exportuserlist = React.lazy(()=> import('./views/pages/list/Exportuserlist'))
 
   const routes =[
     
@@ -148,9 +147,8 @@ const Customer= React.lazy(()=> import('./views/pages/list/Customer'))
   
     // User List Route
      {path:'/userlist', name:"User list", element:Userlist},
-     {path:'/customer', name:"customer", element:Customer},
-     {path:'/names', name:"names", element:Child},
-     {path:'/child', name:"child2", element:Child2},
+     {path:'/names', name:"names", element:Exportuserlist},
+    
   
     //Food 
     {path: '/addfood', name:'Add food excel', element:FoodAdd},

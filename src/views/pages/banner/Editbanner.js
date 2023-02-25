@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import DatePicker from 'react-datepicker';
+import { useNavigate } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 const { REACT_APP_ENDPOINT } = process.env
 const {REACT_APP_ADMIN_ENDPOINT } = process.env
@@ -24,11 +25,12 @@ import {
 console.log(REACT_APP_ENDPOINT)
 function Editbanner() {
   const { id } = useParams()
+  const navigate = useNavigate()
 
   const [banner_title, setTitle] = useState('')
 
   const [outlet_id, setOutletId] = useState('')
-  //console.log(outlet_id)
+  console.log(outlet_id)
   const [is_active, setActive] = useState('')
   const [is_fix, setFix] = useState('')
   const [todate, setToDate] = useState('')
@@ -125,7 +127,7 @@ function Editbanner() {
       .then((res) => {
         console.log(res)
         alert('Successfully banner data updated')
-        window.location.reload()
+      navigate('/bannerlist')
       })
       .catch(() => {
         setMessageErr('Please enter above infromation')
@@ -163,6 +165,7 @@ function Editbanner() {
                       onChange={(e) => setOutletId(e.target.value)}
                     >
                       <option>Select Outlet</option>
+                      <option value="0">Other</option>
                       {outletInfo
                         ? outletInfo.map((item, index) => (
                             <option key={index} value={item.outletId}>

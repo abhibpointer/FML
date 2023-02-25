@@ -31,14 +31,13 @@ const Listbanner = () => {
   const baseUri = `${REACT_APP_ENDPOINT}`;
   const [values, setValues] = useState([]);
   const [message, setMessage] = useState('');
- 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await axios.get(`${REACT_APP_ENDPOINT}/getBannerList`);
         const response = result.data.data
-
+       
         const res = await axios.get(`${REACT_APP_ENDPOINT}/outletlist`);
         const outletNa =res.data.data
 
@@ -46,7 +45,7 @@ const Listbanner = () => {
         for (let i = 0; i < response.length; i++) {
           for (let j = 0; j < response[i].banner.length; j++) {
   
-            var outletBanner = {
+            let outletBanner = {
               _id: response[i]._id,
               outlet_id: response[i].outlet_id,
               banner: response[i].banner[j],
@@ -56,9 +55,16 @@ const Listbanner = () => {
         }
           const data=[]
           for(let i=0; i<list.length; i++){
+            if(list[i].outlet_id === 0){
+              let ob ={
+                banner:list[i],
+                outletName:"Other"
+              }
+              data.push(ob)
+            }
             for(let j=0; j<outletNa.length; j++){
               if(list[i].outlet_id === outletNa[j].outletId){
-                var obj={
+                let obj={
                     banner:list[i],
                     outletName:outletNa[j].locality
                 }
@@ -74,26 +80,9 @@ const Listbanner = () => {
     fetchData()
   }, [])
 
-// const compareOulet = (banner, outletInfo)=>{
-//   const data=[]
-//   for(let i=0; i<banner.length; i++){
-//     for(let j=0; j<outletInfo.length; j++){
-//       if(banner[i].outlet_id === outletInfo[j].outletId){
-//         var obj={
-//             banner:banner[i],
-//             outletName:outletInfo[j].locality
-//         }
-//         data.push(obj)
-//       }
-//   }
-//   } 
-//    return data
-// }
-// const result = compareOulet(values, outletInfo)
-// console.log(result)
-
   // Delete data start
   const toDelete = (id, outlet_id) => {
+   // console.log(id,",,,,,,,", outlet_id)
     axios
       .delete(`${REACT_APP_ENDPOINT}/deleteBanner/${id}/${outlet_id}`)
       .then(() => {
@@ -143,10 +132,10 @@ const Listbanner = () => {
                   <CTableRow className="text-center">
                     <CTableHeaderCell>Sr. No.</CTableHeaderCell>
                     <CTableHeaderCell>Outlet Name</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Banner Title</CTableHeaderCell>
-                    <CTableHeaderCell className="image">Image</CTableHeaderCell>
+                    <CTableHeaderCell>Banner Title</CTableHeaderCell>
+                    <CTableHeaderCell>Image</CTableHeaderCell>
                     <CTableHeaderCell>Active</CTableHeaderCell>
-                    <CTableHeaderCell> Fix</CTableHeaderCell>
+                    <CTableHeaderCell>Fix</CTableHeaderCell>
                     <CTableHeaderCell>From Date</CTableHeaderCell>
                     <CTableHeaderCell>To Date</CTableHeaderCell>
                     <CTableHeaderCell>Action</CTableHeaderCell>
