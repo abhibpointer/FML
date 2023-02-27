@@ -56,7 +56,6 @@ function Downloaddrinks() {
         {header:'Price_Increment_Per_Drink', key:'priceIncrementPerUnit', width:20},
         {header:'Current_Price', key:'runningPrice', width: 9},
         {header:'Available', key:'available', width: 9},
-        // {header: 'Available', key:'available', width:9},
         {header:'Is Offer', key:'isOffer', width: 9},
         {header:'Offer Name', key:'offerName', width: 9},
         {header:'Special Tab', key:'specialTab', width: 9},

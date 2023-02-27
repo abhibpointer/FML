@@ -29,24 +29,24 @@ const AppHeader = () => {
           className="ps-1"
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
         >
-          {/* <CIcon icon={cilMenu} size="lg" /> */}
+          <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
         {/* <CHeaderBrand className="mx-auto d-md-none" to="/">
           <CIcon icon={logo} height={48} alt="Logo" />
         </CHeaderBrand> */}
-        {/* <CHeaderNav className="d-none d-md-flex me-auto">
-          <CNavItem>
+        <CHeaderNav className="d-none d-md-flex me-auto">
+          {/* <CNavItem>
             <CNavLink to="#" component={NavLink}>
               Dashboard
             </CNavLink>
           </CNavItem>
           <CNavItem>
             <CNavLink href="#">Users</CNavLink> 
-          </CNavItem>
+          </CNavItem> */}
           <CNavItem>
             <CNavLink href="#">Settings</CNavLink>
           </CNavItem>
-        </CHeaderNav> */}
+        </CHeaderNav>
         {/* <CHeaderNav>
           <CNavItem>
             <CNavLink href="#">
