@@ -98,7 +98,7 @@ const Listbanner = () => {
         console.log(error.message)
       })
   }
-  // Delete Data end
+
 
   //Navigate to Edit page
   const handleProcess = (id) => {
