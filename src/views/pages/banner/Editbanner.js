@@ -110,7 +110,7 @@ function Editbanner() {
     let b = format(new Date(date), 'yyyy/MM/dd').toLocaleString()
     setFromDate(b)
   }
-
+// update data
   const handleSubmit = (event) => {
     event.preventDefault()
  
@@ -122,7 +122,7 @@ function Editbanner() {
     formData.append('todate', todate)
     formData.append('fromdate', fromdate)
     formData.append('uploadfile', file)
-
+ 
     axios.put(`${REACT_APP_ENDPOINT}/updateBanner/${id}`, formData)
       .then((res) => {
         console.log(res)
