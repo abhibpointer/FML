@@ -6,8 +6,6 @@ import { format } from 'date-fns'
 const { REACT_APP_ENDPOINT } = process.env
 const {REACT_APP_ADMIN_ENDPOINT } = process.env
 
-import Child2 from './Exportuserlist'
-
 
 import {
   CAvatar,
@@ -22,6 +20,7 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
+import Exportuserlist from './Exportuserlist'
 
 function Userlist() {
  // console.log(fromdate,"hkkkk",todate)
@@ -39,8 +38,9 @@ function Userlist() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get(`${REACT_APP_ENDPOINT}/getUsers?page=${currentPage}`)
+        const result = await axios.get(`${REACT_APP_ENDPOINT}/getUsers?search=${value}&page=${currentPage}&fromdate=${fromDate}&todate=${toDate}`)
         setUserData(result.data.data.User)
+        console.log(result.data.data.User)
        // console.log(result.data.data.count)
         setPageCount(result.data.data.count)
    
@@ -49,27 +49,8 @@ function Userlist() {
       }
     }
     fetchData()
-  }, [currentPage])
+  }, [currentPage,value, fromDate, toDate])
 
-  const handleSearch = (e) => {
-    e.preventDefault()
-     let obj = [];
-     if(fromDate || toDate){
-      obj.push(`${REACT_APP_ENDPOINT}/getUsers?fromdate=${fromDate}&todate=${toDate}`)
-     }else{
-      obj.push(`${REACT_APP_ENDPOINT}/getUsers?search=${value}`)
-     }
-   let uri=obj[0]
-     axios
-      .get(uri)
-      .then((res) => {
-        console.log(res)
-        setUserData(res.data.data.User)
-        setPageCount(res.data.data.count)
-       //setValue('')
-      })
-      .catch((err) => console.log(err.message))
-  }
 
   const handlePageClick = (val) => {
     setCurrentPage(val.selected)
@@ -106,14 +87,13 @@ function Userlist() {
     <div className="mt-3">
     <div className="row mt-2">
     <div className='row mt-2'>
-    <div className='col-md-5 mt-3'>
-    <Child2 
+        <div className='col-md-2 mt-3'>
+    <Exportuserlist 
      fromdate={fromDate}
      todate={toDate}
      />
      </div>
-    
-    <div className='col-md-2 mt-3'>
+    <div className='col-md-2 ms-1 mt-3'>
     <label className="">From date:</label>
     <input 
     type='date'
@@ -122,7 +102,7 @@ function Userlist() {
     onChange={handleFromDate}
     />
     </div>
-    <div className='col-md-2 mt-3'>
+    <div className='col-md-2 me-4 mt-3'>
       <label className=''>To date:</label>
       <input
        type="date"
@@ -131,7 +111,8 @@ function Userlist() {
        onChange={handleToDate}
        />
        </div>
-        <div className="col-md-2 mt-3 pt-4 ml-5">
+       
+       <div className="col-md-3 ms-4 mt-3 pt-4 ml-5">
           <input
             type="search"
             className="form-control"
@@ -139,11 +120,6 @@ function Userlist() {
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
-        </div>
-        <div className="col-md-1 mt-3  pt-4">
-          <button className="btn btn-info" onClick={handleSearch}>
-            Search
-          </button>
         </div>
     </div>  
       </div>
@@ -178,7 +154,7 @@ function Userlist() {
                   ) : (
                     userData.map((user, index) => (
                       <CTableRow key={index} className="text-center">
-                        <CTableDataCell>{index + 1 * lastPage+1}</CTableDataCell>
+                        <CTableDataCell>{index +currentPage+1}</CTableDataCell>
                         {/* index*PageNum index + 1 * lastPage + 1 */}
                         {/* <CTableDataCell>{user.profilePic ? 
                         <img src={user.profilePic }

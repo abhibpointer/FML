@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { CAvatar, CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
@@ -20,6 +20,17 @@ const AppSidebar = () => {
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.sidebarUnfoldable)
   const sidebarShow = useSelector((state) => state.sidebarShow)
+  const [over, setOver] = useState(false)
+
+  let nameStyle ={
+    color:''
+  }
+
+  if(over){
+    nameStyle.color="#de5c16"; // #57c5c7
+  }else{
+    nameStyle.color='';
+  }
 
   return (
     <CSidebar
@@ -31,7 +42,11 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
-        <img src={fmlLogo} style={{width:'75px', height:'30px',backgroundColor:'#3c4b64', display:'flex', justifyContent:'left'}}/>
+        <h2 style={nameStyle}
+        onMouseOver={()=>setOver(true)} 
+        onMouseOut={()=>setOver(false)}
+        >Admin</h2>
+        <p className='small mt-4'>Panel</p>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>

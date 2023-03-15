@@ -46,11 +46,11 @@ function DrinkAdd() {
       .then((res) => {
         console.log(res)
         alert('Drink file Add successfully');
-        window.location.reload();
+      //  window.location.reload();
       })
       .catch((error) => {
-        console.log(error.message)
-        setMessageErr('Something went wrong')
+        console.log(error.response.data)
+        setMessageErr(error.response.data.msg)
         return error
       })
   }

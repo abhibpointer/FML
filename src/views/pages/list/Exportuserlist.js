@@ -10,13 +10,14 @@ function Exportuserlist({fromdate, todate}) {
 const handleSubmit =(e)=>{
   e.preventDefault();
  console.log('Please wait file Downloading')
-let obj=[];
-if(fromdate && todate){
-   obj.push(`${REACT_APP_ENDPOINT}/exportusers?fromdate=${fromdate}&todate=${todate}`)
-}else{
-  obj.push(`${REACT_APP_ENDPOINT}/exportusers`)
-}
-let uri= obj[0]
+// let obj=[];
+// if(fromdate && todate){
+//    obj.push(`${REACT_APP_ENDPOINT}/exportusers?fromdate=${fromdate}&todate=${todate}`)
+// }else{
+//   obj.push(`${REACT_APP_ENDPOINT}/exportusers`)
+// }
+// let uri= obj[0]
+let uri = `${REACT_APP_ENDPOINT}/exportusers?fromdate=${fromdate}&todate=${todate}`
 
  axios.get(uri,{responseType: 'arraybuffer'}).then((response )=>{
   const dirtyFileName = response.headers['content-disposition'];

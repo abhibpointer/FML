@@ -1,6 +1,12 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import {
+  CDropdownItem,
+} from '@coreui/react'
+import {
+  cilUser,
+} from '@coreui/icons'
+import CIcon from '@coreui/icons-react'
 function LogOut() {
   const nevigate = useNavigate()
 
@@ -9,8 +15,11 @@ function LogOut() {
     nevigate('/login');
   }
   return (
-       <div className='' onClick={logout}>
-        Logout
+       <div onClick={logout}>
+         <CDropdownItem>
+          <CIcon icon={cilUser} className="me-2" />
+          Logout
+        </CDropdownItem>
       </div>
   )
 }
