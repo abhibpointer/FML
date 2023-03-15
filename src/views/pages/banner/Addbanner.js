@@ -26,7 +26,6 @@ function Addbanner() {
   const navigate = useNavigate()
   const [title, setTitle] = useState('')
   const [outletid, setOutletId] = useState('')
-  console.log(outletid)
   const [active, setActive] = useState(1)
   const [fix, setFix] = useState('')
   const [todate, setToDate] = useState('')
