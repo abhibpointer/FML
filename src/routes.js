@@ -1,22 +1,23 @@
 import React from 'react'
 
 
-const lazyRetry = function(componentImport) {
+
+const lazyRetry = function (componentImport) {
   return new Promise((resolve, reject) => {
-    
-      const hasRefreshed = JSON.parse(
-          window.sessionStorage.getItem('retry-lazy-refreshed') || 'false'
-      );
-      componentImport().then((component) => {
-          window.sessionStorage.setItem('retry-lazy-refreshed', 'false');
-          resolve(component);
-      }).catch((error) => {
-          if (!hasRefreshed) { 
-              window.sessionStorage.setItem('retry-lazy-refreshed', 'true'); 
-              return window.location.reload(); 
-          }
-          reject(error);
-      });
+
+    const hasRefreshed = JSON.parse(
+      window.sessionStorage.getItem('retry-lazy-refreshed') || 'false'
+    );
+    componentImport().then((component) => {
+      window.sessionStorage.setItem('retry-lazy-refreshed', 'false');
+      resolve(component);
+    }).catch((error) => {
+      if (!hasRefreshed) {
+        window.sessionStorage.setItem('retry-lazy-refreshed', 'true');
+        return window.location.reload();
+      }
+      reject(error);
+    });
   });
 };
 
@@ -72,92 +73,96 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 //Banner
-const Banneradd = React.lazy(()=> import('./views/pages/banner/Addbanner'))
-const Banneredit = React.lazy(()=> lazyRetry(()=> import('./views/pages/banner/Editbanner')))
-const Bannerlist = React.lazy(()=> import('./views/pages/banner/Listbanner'))
+const Banneradd = React.lazy(() => import('./views/pages/banner/Addbanner'))
+const Banneredit = React.lazy(() => lazyRetry(() => import('./views/pages/banner/Editbanner')))
+const Bannerlist = React.lazy(() => import('./views/pages/banner/Listbanner'))
 //Manager list
-const Managerlist = React.lazy(()=> import('./views/pages/list/Managerlist'))
-const AddManager = React.lazy(()=> import('./views/pages/list/AddManager'))
+const Managerlist = React.lazy(() => import('./views/pages/list/Managerlist'))
+const AddManager = React.lazy(() => import('./views/pages/list/AddManager'))
 //UserList
-const Userlist = React.lazy(()=> import('./views/pages/list/Userlist'))
+const Userlist = React.lazy(() => import('./views/pages/list/Userlist'))
+const UserBooking =React.lazy(()=>import('./views/pages/list/UserBooking'))
 //Add Food Excel
-const FoodAdd = React.lazy(()=> import('./views/pages/food/FoodAdd'))
+const FoodAdd = React.lazy(() => import('./views/pages/food/FoodAdd'))
+const Downloadfood = React.lazy(() => import('./views/pages/food/Downloadfood'))
 //Add Drink Excel
-const DrinkAdd = React.lazy(()=> import('./views/pages/drink/DrinkAdd'))
-const Downloaddrinks = React.lazy(()=> import('./views/pages/drink/Downloaddrinks'))
-const deletedrinkproduct = React.lazy(()=> import('./views/pages/drink/Deletedrinkproduct'))
+const DrinkAdd = React.lazy(() => import('./views/pages/drink/DrinkAdd'))
+const Downloaddrinks = React.lazy(() => import('./views/pages/drink/Downloaddrinks'))
+const deletedrinkproduct = React.lazy(() => import('./views/pages/drink/Deletedrinkproduct'))
 
-const Exportuserlist = React.lazy(()=> import('./views/pages/list/Exportuserlist'))
+const Exportuserlist = React.lazy(() => import('./views/pages/list/Exportuserlist'))
 
-  const routes =[
-    
-    { path: '/bannerlist', exact: true, name: 'Home' },
-    // { path: '/dashboard', name: 'Dashboard', element:Dashboard },
-    // { path: '/theme', name: 'Theme', element: Colors, exact: true },
-    // { path: '/theme/colors', name: 'Colors', element: Colors },
-    // { path: '/theme/typography', name: 'Typography', element: Typography },
-    // { path: '/base', name: 'Base', element: Cards, exact: true },
-    // { path: '/base/accordion', name: 'Accordion', element: Accordion },
-    // { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },
-    // { path: '/base/cards', name: 'Cards', element: Cards },
-    // { path: '/base/carousels', name: 'Carousel', element: Carousels },
-    // { path: '/base/collapses', name: 'Collapse', element: Collapses },
-    // { path: '/base/list-groups', name: 'List Groups', element: ListGroups },
-    // { path: '/base/navs', name: 'Navs', element: Navs },
-    // { path: '/base/paginations', name: 'Paginations', element: Paginations },
-    // { path: '/base/placeholders', name: 'Placeholders', element: Placeholders },
-    // { path: '/base/popovers', name: 'Popovers', element: Popovers },
-    // { path: '/base/progress', name: 'Progress', element: Progress },
-    // { path: '/base/spinners', name: 'Spinners', element: Spinners },
-    // { path: '/base/tables', name: 'Tables', element: Tables },
-    // { path: '/base/tooltips', name: 'Tooltips', element: Tooltips },
-    // { path: '/buttons', name: 'Buttons', element: Buttons, exact: true },
-    // { path: '/buttons/buttons', name: 'Buttons', element: Buttons },
-    // { path: '/buttons/dropdowns', name: 'Dropdowns', element: Dropdowns },
-    // { path: '/buttons/button-groups', name: 'Button Groups', element: ButtonGroups },
-    // { path: '/charts', name: 'Charts', element: Charts },
-    // { path: '/forms', name: 'Forms', element: FormControl, exact: true },
-    // { path: '/forms/form-control', name: 'Form Control', element: FormControl },
-    // { path: '/forms/select', name: 'Select', element: Select },
-    // { path: '/forms/checks-radios', name: 'Checks & Radios', element: ChecksRadios },
-    // { path: '/forms/range', name: 'Range', element: Range },
-    // { path: '/forms/input-group', name: 'Input Group', element: InputGroup },
-    // { path: '/forms/floating-labels', name: 'Floating Labels', element: FloatingLabels },
-    // { path: '/forms/layout', name: 'Layout', element: Layout },
-    // { path: '/forms/validation', name: 'Validation', element: Validation },
-    // { path: '/icons', exact: true, name: 'Icons', element: CoreUIIcons },
-    // { path: '/icons/coreui-icons', name: 'CoreUI Icons', element: CoreUIIcons },
-    // { path: '/icons/flags', name: 'Flags', element: Flags },
-    // { path: '/icons/brands', name: 'Brands', element: Brands },
-    // { path: '/notifications', name: 'Notifications', element: Alerts, exact: true },
-    // { path: '/notifications/alerts', name: 'Alerts', element: Alerts },
-    // { path: '/notifications/badges', name: 'Badges', element: Badges },
-    // { path: '/notifications/modals', name: 'Modals', element: Modals },
-    // { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
-    // { path: '/widgets', name: 'Widgets', element: Widgets },
-    
-    //Banner opration Routes
-    {path: '/addbanner', name:'Add', element:Banneradd},
-    {path: '/editbanner/:id', name:'Edit', element:Banneredit},
-    {path: '/bannerlist', name:'Banners', element:Bannerlist},
-  
-    //Manager List Route
-    {path: '/managerlist', name:'Manager list', element:Managerlist},
-    {path: '/addmanager', name:'Add Manager', element:AddManager},
-  
-    // User List Route
-     {path:'/userlist', name:"User list", element:Userlist},
-     {path:'/names', name:"names", element:Exportuserlist},
-    
-  
-    //Food 
-    {path: '/addfood', name:'Add food excel', element:FoodAdd},
-  
-    //Drink
-    {path:'/adddrink', name:'Add drink excel', element:DrinkAdd},
-    {path:'/downloaddrink', name:'Download drink', element:Downloaddrinks},
-    {path: '/deletedrinkproduct', name:"Delete Drink Product", element:deletedrinkproduct}
-  ]
+const routes = [
+
+  { path: '/bannerlist', exact: true, name: 'Home' },
+  // { path: '/dashboard', name: 'Dashboard', element:Dashboard },
+  // { path: '/theme', name: 'Theme', element: Colors, exact: true },
+  // { path: '/theme/colors', name: 'Colors', element: Colors },
+  // { path: '/theme/typography', name: 'Typography', element: Typography },
+  // { path: '/base', name: 'Base', element: Cards, exact: true },
+  // { path: '/base/accordion', name: 'Accordion', element: Accordion },
+  // { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },
+  // { path: '/base/cards', name: 'Cards', element: Cards },
+  // { path: '/base/carousels', name: 'Carousel', element: Carousels },
+  // { path: '/base/collapses', name: 'Collapse', element: Collapses },
+  // { path: '/base/list-groups', name: 'List Groups', element: ListGroups },
+  // { path: '/base/navs', name: 'Navs', element: Navs },
+  // { path: '/base/paginations', name: 'Paginations', element: Paginations },
+  // { path: '/base/placeholders', name: 'Placeholders', element: Placeholders },
+  // { path: '/base/popovers', name: 'Popovers', element: Popovers },
+  // { path: '/base/progress', name: 'Progress', element: Progress },
+  // { path: '/base/spinners', name: 'Spinners', element: Spinners },
+  // { path: '/base/tables', name: 'Tables', element: Tables },
+  // { path: '/base/tooltips', name: 'Tooltips', element: Tooltips },
+  // { path: '/buttons', name: 'Buttons', element: Buttons, exact: true },
+  // { path: '/buttons/buttons', name: 'Buttons', element: Buttons },
+  // { path: '/buttons/dropdowns', name: 'Dropdowns', element: Dropdowns },
+  // { path: '/buttons/button-groups', name: 'Button Groups', element: ButtonGroups },
+  // { path: '/charts', name: 'Charts', element: Charts },
+  // { path: '/forms', name: 'Forms', element: FormControl, exact: true },
+  // { path: '/forms/form-control', name: 'Form Control', element: FormControl },
+  // { path: '/forms/select', name: 'Select', element: Select },
+  // { path: '/forms/checks-radios', name: 'Checks & Radios', element: ChecksRadios },
+  // { path: '/forms/range', name: 'Range', element: Range },
+  // { path: '/forms/input-group', name: 'Input Group', element: InputGroup },
+  // { path: '/forms/floating-labels', name: 'Floating Labels', element: FloatingLabels },
+  // { path: '/forms/layout', name: 'Layout', element: Layout },
+  // { path: '/forms/validation', name: 'Validation', element: Validation },
+  // { path: '/icons', exact: true, name: 'Icons', element: CoreUIIcons },
+  // { path: '/icons/coreui-icons', name: 'CoreUI Icons', element: CoreUIIcons },
+  // { path: '/icons/flags', name: 'Flags', element: Flags },
+  // { path: '/icons/brands', name: 'Brands', element: Brands },
+  // { path: '/notifications', name: 'Notifications', element: Alerts, exact: true },
+  // { path: '/notifications/alerts', name: 'Alerts', element: Alerts },
+  // { path: '/notifications/badges', name: 'Badges', element: Badges },
+  // { path: '/notifications/modals', name: 'Modals', element: Modals },
+  // { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
+  // { path: '/widgets', name: 'Widgets', element: Widgets },
+
+  //Banner opration Routes
+  { path: '/addbanner', name: 'Add', element: Banneradd },
+  { path: '/editbanner/:id', name: 'Edit', element: Banneredit },
+  { path: '/bannerlist', name: 'Banners', element: Bannerlist },
+
+  //Manager List Route
+  { path: '/managerlist', name: 'Manager list', element: Managerlist },
+  { path: '/addmanager', name: 'Add Manager', element: AddManager },
+
+  // User List Route
+  { path: '/userlist', name: "User list", element: Userlist },
+  { path: '/names', name: "names", element: Exportuserlist },
+  { path: '/userbooking', name: "User Booking", element: UserBooking },
+
+
+  //Food 
+  { path: '/addfood', name: 'Add food excel', element: FoodAdd },
+  { path: '/downloadfood', name: 'Download food', element: Downloadfood },
+
+  //Drink
+  { path: '/adddrink', name: 'Add drink excel', element: DrinkAdd },
+  { path: '/downloaddrink', name: 'Download drink', element: Downloaddrinks },
+  { path: '/deletedrinkproduct', name: "Delete Drink Product", element: deletedrinkproduct }
+]
 
 
 export default routes

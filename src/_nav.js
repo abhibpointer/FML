@@ -14,6 +14,7 @@ import {
   cilStar,
   cilList,
   cilHome,
+  cilBook,
   cilFile,
   cilListFilter,
   cilDataTransferDown,
@@ -44,10 +45,10 @@ const _nav = [
     icon: <CIcon icon={cilHome} customClassName="nav-icon" />,
   },
   {
-   component: CNavItem,
-   name:'Manager list',
-   to:'/managerlist',
-   icon:<CIcon icon={cilListFilter} customClassName="nav-icon"/>
+    component: CNavItem,
+    name: 'Manager list',
+    to: '/managerlist',
+    icon: <CIcon icon={cilListFilter} customClassName="nav-icon" />
   },
   // {
   //  component:CNavItem,
@@ -56,45 +57,66 @@ const _nav = [
   //  icon:<CIcon icon={cilUserPlus} customClassName="nav-icon"/>
   // },
   {
-   component:CNavItem,
-   name:'Customers list',
-   to:'/userlist',
-   icon:<CIcon icon={cilListNumbered} customClassName='nav-icon'/>,
+    component: CNavItem,
+    name: 'Customers list',
+    to: '/userlist',
+    icon: <CIcon icon={cilListNumbered} customClassName='nav-icon' />,
 
   },
   {
-   component:CNavItem,
-   name:'Add food excel',
-   to:'/addfood',
-   icon:<CIcon icon={cilFile} customClassName='nav-icon'/>,
+    component: CNavItem,
+    name: 'Table Booking',
+    to: '/userbooking',
+    icon: <CIcon icon={cilBook} customClassName='nav-icon' />,
+
+  },
+  {
+    component: CNavGroup,
+    name: 'Food',
+    icon: <CIcon icon={cilList} customClassName='nav-icon' />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Add food excel',
+        to: '/addfood',
+        icon:<CIcon icon={cilFile} customClassName='nav-icon' />
+      },
+      {
+        component: CNavItem,
+        name: 'Download food',
+        to: '/downloadfood',
+        icon: <CIcon icon={cilDataTransferDown} customClassName='nav-icon' />
+      }
+
+    ]
   },
 
   {
-   component:CNavGroup,
-   name:'drink',
-   icon:<CIcon icon={cilList} customClassName='nav-icon'/>,
-   items:[
-    {
-      component:CNavItem,
-      name:'Add drink excel',
-      to:'/adddrink', 
-      icon:<CIcon icon={cilFile} customClassName='nav-icon'/>,
-     },
-     {
-      component:CNavItem,
-      name:'Download drink',
-      to:'/downloaddrink',
-      icon:<CIcon icon={cilDataTransferDown} customClassName='nav-icon'/>,
-     },
-     {
-      component:CNavItem,
-      name:'Delete Drink Product',
-      to:'/deletedrinkproduct',
-      icon:<CIcon icon={cilTrash} customClassName='nav-icon'/>
-     }
-   ]
+    component: CNavGroup,
+    name: 'Drink',
+    icon: <CIcon icon={cilList} customClassName='nav-icon' />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Add drink excel',
+        to: '/adddrink',
+        icon: <CIcon icon={cilFile} customClassName='nav-icon' />,
+      },
+      {
+        component: CNavItem,
+        name: 'Download drink',
+        to: '/downloaddrink',
+        icon: <CIcon icon={cilDataTransferDown} customClassName='nav-icon' />,
+      },
+      {
+        component: CNavItem,
+        name: 'Delete Drink Product',
+        to: '/deletedrinkproduct',
+        icon: <CIcon icon={cilTrash} customClassName='nav-icon' />
+      }
+    ]
   },
- 
+
   // {
   //   component: CNavGroup,
   //   name: 'Pages',
@@ -123,6 +145,6 @@ const _nav = [
   //   ],
   // },
 
- ]
+]
 
 export default _nav
